@@ -19,18 +19,25 @@ This customer uses Chomp to monitor his body's nutrition levels as he prepares f
 Many other meal-tracking services already exist.  Some have multiple million downloads and users.  The majority of these however are very specific in scope, with only calories being counted or with a focus on reporting all the nutritional numbers at once.  The large majority of these applications are targeting weight loss customers, and not an everyday user.
 
 Both web applications and mobile applications have been developed in this field.  Some specific competitors include: \begin{list}{•}{•}
-\item \textbf{Noom Coach}
+\item \textbf{Noom Coach} -- A semi-free app that counts calories and tracks weight of the user.  The paid version allows for community sharing of progress and chatting amongst similar-goaled users.
 \item \textbf{MyFitnessPal}
 \item \textbf{Lifesum}
 \item \textbf{FatSecret}
 \item \textbf{My Food Diary}
 \end{list}
 \section*{User Stories}
-\subsection{Login}
+% to include in each story: Name/Description, Actors/Personas, Precondition/trigger, Actions/Post Condition, Acceptance Criteria, Tests
+\subsection{User Accounts}
+\textbf{Personas involved:} All
 \subsubsection{Registration}
-A user is greeted with an interface requesting to register.  Options for both Google and Facebook account linkage (via their account APIs) will be presented as well as a manual entry field for e-mail and password.  The manual entry process will request first name, last name, username, and e-mail.  The registration section will send the user directly to the Account Setup stage.
-\subsubsection{Account Setup}
+\textbf{Precondition:} An unrecognized or not-logged in user visits our frontpage.
+\textbf{Actions:} A user is greeted with an interface requesting to register.  Options for both Google and Facebook account linkage (via their account APIs) will be presented as well as a manual entry field for e-mail and password. \begin{list}{•}{•}
+\item Google's API registration will request the user for their google e-mail and password.  After this is submitted, the
+\item Facebook's API registration will request the user for their Facebook e-mail and password.  This will then re-direct to a facebook window that asks the user to agree for us to get certain 
+\item The manual entry process will request first name, last name, username, and e-mail.  The registration section will send the user directly to the Account Setup stage.
 
+\end{list}
+\subsubsection{Account Setup}
 \subsubsection{Login}
 
 \subsubsection{Logout}
