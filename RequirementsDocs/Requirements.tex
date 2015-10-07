@@ -1,4 +1,5 @@
 \documentclass[a4paper,12pt]{article}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \begin{document}
 \title{Chomp
@@ -30,26 +31,50 @@ Both web applications and mobile applications have been developed in this field.
 \subsection{User Accounts}
 \textbf{Personas involved:} All
 \subsubsection{Registration}
-\textbf{Precondition:} An unrecognized or not-logged in user visits our frontpage.
+\textbf{Precondition:} An unrecognized or not-logged in user visits our frontpage.\\
 \textbf{Actions:} A user is greeted with an interface requesting to register.  Options for both Google and Facebook account linkage (via their account APIs) will be presented as well as a manual entry field for e-mail and password. \begin{list}{•}{•}
 \item Google's API registration will request the user for their google e-mail and password.  After this is submitted, the
 \item Facebook's API registration will request the user for their Facebook e-mail and password.  This will then re-direct to a facebook window that asks the user to agree for us to get certain 
-\item The manual entry process will request first name, last name, username, and e-mail.  The registration section will send the user directly to the Account Setup stage.
-
+\item Manual entry process will request first name, last name, username, and e-mail.  This will be followed up by sending the user's e-mail a confirmation message in which a unique activation link will be sent.  The process will end at a page instructing users to look for their e-mail link that will allow them to finish setting up their account.
 \end{list}
+After registration completion, the system will send the user directly to the Account Setup stage.\\
+\textbf{Test/Postcondition:} A new account should be attempted to be created via google, facebook, as well as manually and the database should register all of the user's submitted information.  To check, developers can access the database directly to see the adition.
 \subsubsection{Account Setup}
+\textbf{Precondition:} Either the user's account has freshly been registered, or they have clicked on the 'Account Settings' button of their user profile.\\
+\textbf{Actions:} If the account is already setup, the dialogue will present the setup items as an editable listing rather than sequential prompts.  A dialogue will ask the user about the following items\begin{list}{•}{•}
+\item Number of users to track (along with their usernames if they're also Chomp users)
+\item Birthdate (of primary user and each non-Chomp user)
+\item Current weight (of primary user and each non-Chomp user)
+\item Height (of primary user and each non-Chomp user)
+\item Personal priority ranking (eg. sustainability, carbohydrate intake, finances, etc..)
+\end{list}
+Once all of this information is submitted, the user's account will be updated and the desired statistics will take priority in the nutrition and value tracking interface.\\
+\textbf{Test/Postcondition:} 
 \subsubsection{Login}
-
+\textbf{Precondition:}\\
+\textbf{Actions:}\\
+\textbf{Test/Postcondition:}
 \subsubsection{Logout}
-
+\textbf{Precondition:}\\
+\textbf{Actions:}\\
+\textbf{Test/Postcondition:}
 \section*{User Interface Requirements}
-
+There are four major sections of our user interface that should be considered critical to the application's success.
+\begin{list}{•}{•}
+\item \textbf{Meal Entry Dialogue}  This dialogue should allow entry for time of meal, contents of meal, and portion of meal.
+\item \textbf{Personal Nutritional \& Value Tracking}
+\item \textbf{Suggested Meal Listing}
+\item \textbf{Community Support Feed}
+\end{list}
 \newpage 
 \section*{Appendix 1 - User Personas}
 \subsection*{Boris Chetznekov}
-Age: 65
+\includegraphics[scale=0.3]{Boris.jpg}
+Age: 65\\
 \subsection*{Susan Montgomery}
-Age: 32
+\includegraphics[scale=0.23]{Susan.jpg}
+Age: 32\\
 \subsection*{Chet Reist}
-Age: 21
+\includegraphics[scale=0.38]{Chet.jpg}
+Age: 21\\
 \end{document}
