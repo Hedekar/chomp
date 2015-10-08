@@ -2,6 +2,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[titletoc,title]{appendix}
+\usepackage{wrapfig}
 \begin{document}
 \title{Chomp
 \subsubsection*{Requirements and Specification Document -- Group 6}\subsubsection*{Version 0.1}
@@ -10,7 +11,7 @@
 \renewcommand{\abstractname}{Project Abstract}
 \begin{abstract}
 
-Chomp is a web application that tracks what a person, group, or family eats, and gives nutritional advice, financial suggestions, sustainability ratings, and other meal and dietary statistical analysis.  Chomp provides a more digestable understanding of how our food affects us beyond a simple calorie counter.  By leveraging multiple informational APIs, a wealth of data can be generated from simple meal entries.  Customers use Chomp to gague their daily, weekly, monthly, and quarterly progress toward their personal goals, and choose Chomp as their preffered tool because of its variety and wealth of information packed into a convenient and understandable form.  Plans for Chomp include adding a social support network of like-minded users to aid in users' feeling of and drive for success.  The anticipated revenue stream for Chomp will be in-app addvertisements that target a given user.
+Chomp is a web application that tracks what a person, group, or family eats, and gives nutritional advice, financial suggestions, sustainability ratings, and other meal and dietary statistical analysis.  Chomp provides a more digestable understanding of how our food affects us beyond a simple calorie counter.  By leveraging multiple informational APIs, a wealth of data can be generated from simple meal entries.  Customers use Chomp to gauge their daily, weekly, monthly, and quarterly progress toward their personal goals, and choose Chomp as their preffered tool because of its variety and wealth of information packed into a convenient and understandable form.  Plans for Chomp include adding a social support network of like-minded users to aid in users' feeling of and drive for success.  The anticipated revenue stream for Chomp will be in-app addvertisements that target a given user.
 
 Our github location is \url{http://github.com/hedekar/chomp}
 \end{abstract}
@@ -32,12 +33,12 @@ Many other meal-tracking services already exist.  Some have multiple million dow
 Both web applications and mobile applications have been developed in this field.  Some specific competitors include: \begin{list}{•}{•}
 \item \textbf{\href{http://www.noom.com}{Noom Coach -- noom.com} -- }A semi-free app that counts calories eaten and calories burned.  It then calculates and tracks weight of the user.  Includes 'coach' messages in a personalized manner.  The paid version allows for community sharing of progress and chatting amongst similar-goaled users as well as meal suggestions.  10-50million android downloads, 4.3 rating from 160,000+ reviews.  Its strengths are the personal coaching aspects and its very simple interface.
 \item \textbf{\href{http://www.myfitnesspal.com}{MyFitnessPal -- myfitnesspal.com} -- }A full-featured free application and web app sponsored by UnderArmour.  Multiple nutrition reports are available for a user, though it is centred on calories, including a very complete meal item search list along with workout habits and daily activity settings.  This application is most closely related to our desired toolset, however the overall interface is very cumbersome to use on a daily basis.10-50million android downloads, 4.6 rating from 1.1milllion+ reviews.  Its strengths are the comprehensiveness of the information it gives while the user interface and the lack of group features are its downfalls.
-\item \textbf{\href{http://www.lifesum.com}{Lifesum -- lifesum.com} -- }A semi-free app that heavily promotes the gold/paid upgrade.  Lifesum focuses primarily on meal suggestions with a substantial number of possible diet choices.  Meal suggestions come with full cooking instructions and basic (free) or complete (gold) nutritional information.  The recipie api used is from Recipies+ and their logo is used in the process.  The interface is very clean but with somewhat hidden and undiscoverable functionalities.  1-5million android downloads, 4.2 rating from 45,000 reviews.  Its strengths are the visually appealing interface and good meal suggestions, while its weaknesses include a difficult to understand interface and an incomplete feature set unless the upgrade is purchased.
+\item \textbf{\href{http://www.lifesum.com}{Lifesum -- lifesum.com} -- }A semi-free app that heavily promotes the gold/paid upgrade.  Lifesum focuses primarily on meal suggestions with a substantial number of possible diet choices.  Meal suggestions come with full cooking instructions and basic (free) or complete (gold) nutritional information.  The recipe api used is from Recipies+ and their logo is used in the process.  The interface is very clean but with somewhat hidden and undiscoverable functionalities.  1-5million android downloads, 4.2 rating from 45,000 reviews.  Its strengths are the visually appealing interface and good meal suggestions, while its weaknesses include a difficult to understand interface and an incomplete feature set unless the upgrade is purchased.
 \item \textbf{\href{http://www.fatsecret.com}{FatSecret -- fatsecret.com} -- }A very sleek and easy to use free meal and exercise diary.  The interface is extremely easy to use on a daily basis, includes weight tracking, a barcode scanner, and a community feed.  It is one of the few apps that editing mistake entries is immediately obvious, and readily gives nutritional breakdown for each food item.  10-50million android installs, 4.3 rating from 185,000+ reviews.  Its strengths are the ease of use and wealth of information, while its downfalls are a lack of summary reporting and a cold aesthetic.
-\item \textbf{\href{http://www.myfooddiary.com}{My Food Diary -- myfooddiary.com} -- }A paid subscription website that charges \$9 per month for meal and excercise tracking.  It relies heavily on mainstream media advertisements for its customer base.  Includes a detailed body measures in its reports where a person can track waist, shoulders, etc... as well as nutritional breakdowns of a person's diet and any given food (fiber, iron, etc...).  There are customizable chart reporting and comunity features. The interface does look slightly clunky with poor web redered fonts but an update sneak peak via twitter shows a nicer interface.  User data is not known for this application, but LinkedIn lists them as having 1-10 employees.
+\item \textbf{\href{http://www.myfooddiary.com}{My Food Diary -- myfooddiary.com} -- }A paid subscription website that charges \$9 per month for meal and excercise tracking.  It relies heavily on mainstream media advertisements for its customer base.  Includes a detailed body measures in its reports where a person can track waist, shoulders, etc... as well as nutritional breakdowns of a person's diet and any given food (fiber, iron, etc...).  There are customizable chart reporting and community features. The interface does look slightly clunky with poor web redered fonts but an update sneak peak via twitter shows a nicer interface.  User data is not known for this application, but LinkedIn lists them as having 1-10 employees.
 \end{list}
 It should be noted that despite heavy market saturation, the revenue stream will still exist for any application that can garner a reliable or substantial user base.  A large number of regular users is our target fiscal goal.\\
-Furthermore, although many of these applications have strong features, none have the entire package of usability and full time-domain reporting.  There is a space for Chomp in this market.
+Furthermore, although many of these applications have strong features, none have the entire package of usability and full time-domain reporting.  None of the apps we reviewed featured a cost of meal tracker.  There is a space for Chomp in this market.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{User Stories}
 %%%%%%%%% to include in each story: Name/Description, Actors/Personas, Precondition/trigger, Actions/Post Condition, Acceptance Criteria, Tests
@@ -93,20 +94,34 @@ These will be filled in in later iterations of this document.
 \begin{appendices}
 \section{User Personas}
 \subsection{Boris Chetznekov}
-\includegraphics[scale=0.3]{Boris.jpg}\\
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+	\includegraphics[scale=0.3]{Boris.jpg}\\
+  \end{center}
+\end{wrapfigure}
 \textbf{Age:} 58\\
 \textbf{Weight:} 370lbs\\
 \textbf{Occupation:} Office Manager for the city's traffic department\\
 \textbf{Techy Rating:} 3.5 out of 5\\
 \textbf{Goal:} To not die early.  After years of gross caloric intake his doctor has informed him of his impending death if his diet and weight doesn't change immediately.\\
+
 \begin{large}
 \textbf{\textit{"I guess I have to change my ways; stupid doctors.  Hopefully I can still drink a beer or vodka or two."}}
 \end{large}\\\\
 \textbf{Persona:} Boris grew up in a small Russian village for his first twenty five years before moving to Finland.  For years a diet of perogies, kielbasa, and beer have not been good to his cholesterol or his heart.  His wife has constantly asked him to eat a little less but Boris is very stubborn.\\
 \\
-Every Thursday the traffic office guys watch football at the pub and reminice
+Every Thursday the traffic office guys watch football at the pub, reminisce about when he was a fullback in Russia, and eat hot wings.  \textit{"There's no way I'm giving up hot wings and footy.  I might cut back on the wings, but I'm not giving them up, even if it kills me."}  Boris prefers the suicide flavour sauce that the pub makes in-house (the irony of that \textit{is} lost on him).\\
+\\
+His wife is fully in support of Boris's plan to lose weight and she'll cook whatever is needed for this to work -- or at least she'll try (she's not the best cook and often buys frozen dinners).  She does have a few recipes she loves to make (like borscht and kaalik{\"a}{\"a}ryleet/cabbage rolls), but often Boris and her share cooking duties, leading to many grilled-cheese dinners.  Rarely do they make salad.\\
+\\
+Boris is often the one in the office to sit at his desk and have people come to him.  It has been almost a decade since he had a shift in the field watching traffic flows or setting up car counters.  At home his reclining chair in front of the television is well-used.
+\newpage
 \subsection{Susan Montgomery}
-\includegraphics[scale=0.23]{Susan.jpg}\\
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+	\includegraphics[scale=0.23]{Susan.jpg}\\
+  \end{center}
+\end{wrapfigure}
 \textbf{Age:} 33\\
 \textbf{Weight:} 143lbs\\
 \textbf{Occupation:} Mother and part-time grocery clerk\\
@@ -116,6 +131,7 @@ Every Thursday the traffic office guys watch football at the pub and reminice
 \textbf{\textit{"My family deserves the best foods we can afford.  I've heard spinach isn't as healthy as most think and it's rather expensive."}}
 \end{large}\\\\
 \textbf{Persona:}
+\newpage
 \subsection{Chet Reist}
 \includegraphics[scale=0.38]{Chet.jpg}\\
 \textbf{Age:} 21\\
@@ -123,9 +139,10 @@ Every Thursday the traffic office guys watch football at the pub and reminice
 \textbf{Occupation:} Waiter and part-time supplement salesperson\\
 \textbf{Techy Rating:} 4 out of 5\\
 \textbf{Goal:} To win the next body building competition he enters and to keep track of how much of his food his roommates eat.\\
+\\
 \begin{large}
-\textbf{\textit{"I need protien, but I swear my roomates are taking my whey when I'm not looking.  I ought to setup a camera to catch them."}}
-\end{large}\\
+\textbf{\textit{"I need protien, but I swear my roomates are taking my food whey when I'm not looking.  I ought to setup a camera to catch them."}}
+\end{large}\\\\
 \textbf{Persona:}
 \end{appendices}
 \end{document}

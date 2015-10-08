@@ -21,4 +21,4 @@
 \contentsline {section}{Appendix \numberline {A}User Personas}{9}{Appendix.1.A}
 \contentsline {subsection}{\numberline {A.1}Boris Chetznekov}{9}{subsection.1.A.1}
 \contentsline {subsection}{\numberline {A.2}Susan Montgomery}{10}{subsection.1.A.2}
-\contentsline {subsection}{\numberline {A.3}Chet Reist}{10}{subsection.1.A.3}
+\contentsline {subsection}{\numberline {A.3}Chet Reist}{11}{subsection.1.A.3}
