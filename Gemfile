@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+# For secure passwords
+gem 'bcrypt', '~> 3.1.7'
+
+# For bootstrap prettiness
 gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
