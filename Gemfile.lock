@@ -83,7 +83,10 @@ GEM
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     pg (0.18.3)
+<<<<<<< HEAD
     puma (2.14.0)
+=======
+>>>>>>> 2f49731985e8185d7c754979207e50d5f4d414d3
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -171,7 +174,10 @@ DEPENDENCIES
   jquery-rails
   less-rails
   pg
+<<<<<<< HEAD
   puma
+=======
+>>>>>>> 2f49731985e8185d7c754979207e50d5f4d414d3
   rails (= 4.2.3)
   rails_12factor
   sass-rails (~> 5.0)

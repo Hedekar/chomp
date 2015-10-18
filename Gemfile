@@ -8,6 +8,7 @@ gem 'therubyracer'
 gem 'less-rails'
 gem 'twitter-bootstrap-rails'
 
+<<<<<<< HEAD
 # Heroku uses the puma webserver according to this tutorial: https://devcenter.heroku.com/articles/getting-started-with-rails4
 gem 'puma'
 
@@ -16,6 +17,11 @@ gem 'rails_12factor'
 gem 'rails', '4.2.3'
 # To specify what ruby version
 #gem 'ruby', '~>2.0'
+=======
+gem 'rails_12factor'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '4.2.3'
+>>>>>>> 2f49731985e8185d7c754979207e50d5f4d414d3
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
