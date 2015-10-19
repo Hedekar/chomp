@@ -1,0 +1,17 @@
+<h2>User List</h2>
+
+<table border="1" style="width:100%">
+  <tr>
+    <th style="padding:10px">Email</th>
+    <th style="padding:10px">Password</th>
+    <th style="padding:10px">&nbsp;</th>
+  </tr>
+ 
+  <% @users.each do |u| %>
+    <tr>
+      <td style="padding:10px"><%= u.email %></td>
+      <td style="padding:10px"><%= u.password_digest %></td>
+      <td style="padding:10px"><%= link_to 'Delete', user_path(u), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

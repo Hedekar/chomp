@@ -1,0 +1,25 @@
+<%= form_for @user do |f| %>
+  <div class="form_container">
+    
+    <div class="input_item"> 
+      Email:</br> 
+      <%= f.text_field :email %> 
+    </div>
+    
+    <div class="input_item"> 
+      Password:</br> 
+      <%= f.password_field :password %>
+    </div>
+    
+    <div class="input_item"> 
+      Confirmation:</br> 
+      <%= f.password_field :password_confirmation %>
+    </div>
+    
+    <div class="form_controls">
+      <%= f.submit 'Register' %>
+      <div class="separator">&nbsp;</div>
+      <%= link_to "Back", login_path %>
+    </div>
+  </div>
+<% end %>
