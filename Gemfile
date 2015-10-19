@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# For google login api from instructions at https://github.com/zquestz/omniauth-google-oauth2
+gem 'omniauth-google-oauth2', :git => 'git://github.com/zquestz/omniauth-google-oauth2'
+
 # For secure passwords
 gem 'bcrypt', '~> 3.1.7'
 
@@ -56,4 +59,3 @@ group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
