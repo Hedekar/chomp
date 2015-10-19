@@ -11,12 +11,12 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       flash[:error] = "Invalid email and password combination."
-      render "new"
+      redirect_to login_path
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to login_path
+    redirect_to root_path
   end
 end

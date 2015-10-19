@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   get 'welcome/index'
-  
+  # get '/:id', to: 'users#show', as: :profile
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   
   resources :users
+  resources :secure
   
   root 'welcome#index'
   

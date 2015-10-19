@@ -1,5 +1,5 @@
 <%= form_for @user do |f| %>
-  <div class="form_container">
+  <div class="well">
     
     <div class="input_item"> 
       Email:</br> 
@@ -19,7 +19,7 @@
     <div class="form_controls">
       <%= f.submit 'Register' %>
       <div class="separator">&nbsp;</div>
-      <%= link_to "Back", login_path %>
+      <%= link_to "Cancel", login_path %>
     </div>
   </div>
 <% end %>
