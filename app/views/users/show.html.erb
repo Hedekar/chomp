@@ -1,9 +1,9 @@
-<h2>User Profile</h2>
-
+<h2>Account</h2>
 <div>
   Email: <%= @user.email %>
 </div>
 
+<h2>Profile</h2>
 <div>
   First Name: <%= @user.first_name %>
 </div>
@@ -13,5 +13,11 @@
 </div>
 
 <div>
-  Gender: <%= @user.gender %>
+  Gender: <%= @user.gender_desc %>
 </div>
+
+<div>
+  Birth: <%= @user.birth %>
+</div>
+
+<%= link_to "Edit", edit_user_path %>

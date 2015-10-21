@@ -1,15 +1,28 @@
 Rails.application.routes.draw do
   
   get 'welcome/index'
-  # get '/:id', to: 'users#show', as: :profile
+  get 'profile/edit'
+  
+  controller :dashboard do
+    get 'home' => :index
+  end
+  
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     get 'logout' => :destroy
   end
   
-  resources :users
-  resources :secure
+  resources :users do
+    resources :profile
+  end
+  
+  #controller :users do
+  #  get 'edit_account' => :edit_account
+  #  post 'edit_account' => :update_acccount
+  #  get 'edit_profile' => :edit_profile
+  #  post 'edit_profile' => :update_profile
+  #end
   
   root 'welcome#index'
   

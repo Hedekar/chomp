@@ -1,2 +1,0 @@
-class SecureController < ApplicationController
-end
