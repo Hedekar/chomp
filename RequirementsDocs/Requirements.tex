@@ -1,17 +1,22 @@
 \documentclass[a4paper,12pt]{article}
+\usepackage{color,soul}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage[titletoc,title]{appendix}
 \usepackage{wrapfig}
 \begin{document}
 \title{Chomp
-\subsubsection*{Requirements and Specification Document -- Group 6}\subsubsection*{Version 0.1}
+\subsubsection*{Requirements and Specification Document -- Group 6}\subsubsection*{Version 1.0}
 }\maketitle
+\hl{\item\textbf{Note: Iteration 1 specific information is highlighted.}}\\
+
+\textbf{The url for our website is: \url{http://cmpt276-chomp.herokuapp.com}}\\
+
 
 \renewcommand{\abstractname}{Project Abstract}
 \begin{abstract}
 
-Chomp is a web application that tracks what a person, group, or family eats, and gives nutritional advice, financial suggestions, sustainability ratings, and other meal and dietary statistical analysis.  Chomp provides a more digestable understanding of how our food affects us beyond a simple calorie counter.  By leveraging multiple informational APIs, a wealth of data can be generated from simple meal entries.  Customers use Chomp to gauge their daily, weekly, monthly, and quarterly progress toward their personal goals, and choose Chomp as their preffered tool because of its variety and wealth of information packed into a convenient and understandable form.  Plans for Chomp include adding a social support network of like-minded users to aid in users' feeling of and drive for success.  The anticipated revenue stream for Chomp will be in-app addvertisements that target a given user as well as customer eating habit intelligence that can be sold to firms.\\
+Chomp is a web application that tracks what a person, group, or family eats, and gives nutritional advice, financial suggestions, sustainability ratings, and other meal and dietary statistical analysis.  Chomp provides a more digestible understanding of how our food affects us beyond a simple calorie counter.  By leveraging multiple informational APIs, a wealth of data can be generated from simple meal entries.  Customers use Chomp to gauge their daily, weekly, monthly, and quarterly progress toward their personal goals, and choose Chomp as their preferred tool because of its variety and wealth of information packed into a convenient and understandable form.  Plans for Chomp include adding a social support network of like-minded users to aid in users' feeling of and drive for success.  The anticipated revenue stream for Chomp will be in-app addvertisements that target a given user as well as customer eating habit intelligence that can be sold to firms.\\
 \\
 Our github location is \url{http://github.com/hedekar/chomp} and the most recent version of this document is available there.
 \end{abstract}
@@ -44,43 +49,82 @@ Furthermore, although many of these applications have strong features, none have
 %%%%%%%%% to include in each story: Name/Description, Actors/Personas, Precondition/trigger, Actions/Post Condition, Acceptance Criteria, Tests
 \subsection{User Accounts}
 \textbf{Personas involved:} All\\
+\\
 \textbf{Description:} These stories are all united under the epic of editing and using both new and existing user accounts.  New users must first complete the Registration story.  Returning users must first complete the Login story.  After these stories, users may then complete the Account Setup and Logout stories.
 \subsubsection{Registration}
-\textbf{Precondition:} An unrecognized or not-logged in user visits our frontpage.\\
-\textbf{Actions:} A user is greeted with an interface requesting to register. Options for both Google and Facebook account linkage (via their account APIs) will be presented as well as a manual entry field for e-mail and password.request first name, last name, username, and e-mail. This will be followed up by sending the user's e-mail and password. \begin{list}{•}{•}
-\item Google's API registration will request the user for their google e-mail and password.  After this is submitted, the
-\item Facebook's API registration will request the user for their Facebook e-mail and password.  This will then re-direct to a facebook window that asks the user to agree for us to get certain 
-\item Manual entry process will request first name, last name, username, and e-mail.  This will be followed up by sending the user's e-mail a confirmation message in which a unique activation link will be sent.  The process will end at a page instructing users to look for their e-mail link that will allow them to finish setting up their account.
+\hl{\textbf{Precondition:} An unrecognized or not-logged in user visits our front page.}\\
+\\
+\hl{\textbf{Actions:} A user is greeted with an interface requesting to register. Options for both Google and Facebook account linkage (via their account APIs) will be presented as well as a manual entry field for e-mail and password.request first name, last name, username, and e-mail. This will be followed up by sending the user's e-mail and password.\\
+\\
+Manual entry process will request first name, last name, username, and e-mail. This will be followed up by sending the user's e-mail a confirmation message in which a unique activation link will be sent. The process will end at a page instructing users to look for their e-mail link that will allow them to finish setting up their account.\\
+\\
+After registration completion, the system will send the user directly to the Account Setup stage.}\\
+\\
+\hl{\textbf{Test/Postcondition:} A new account should be attempted to be created via Google, Facebook, as well as manually and the database should register all of the user's submitted information.  To check, developers can access the database directly to see the addition.}\\
+\\
+\hl{\textbf{Test Cases include:}}
+\begin{list}{•}{•}
+\item \hl{\textbf{Base case: }Once email and password is entered. The user should be sent to the update profile user story.}
+\item \hl{\textbf{Case 1: }A password must be confirmed by entering it a second time. If the passwords not match an error should be thrown.}
+\item \hl{\textbf{Case 2: }If an invalid email address is entered, an error should be thrown.}
 \end{list}
-After registration completion, the system will send the user directly to the Account Setup stage.\\
-\textbf{Test/Postcondition:} A new account should be attempted to be created via google, facebook, as well as manually and the database should register all of the user's submitted information.  To check, developers can access the database directly to see the adition.
-Test Cases:
-Base case:
-Once email and password is entered. The user should be sent to the update profile user story.
-Case 1:
-A password must be confirmed by entering it a second time. If the passwords not match an error should be thrown.
-Case 2:
-If an invalid email address is entered, an error should be thrown.
+
 \subsubsection{Account Setup}
 \textbf{Precondition:} Either the user's account has freshly been registered, or they have clicked on the 'Account Settings' button of their user profile.\\
-\textbf{Actions:} If the account is already setup, the dialogue will present the setup items as an editable listing rather than sequential prompts.  A dialogue will ask the user about the following items\begin{list}{•}{•}
-\item Number of users to track (along with their usernames if they're also Chomp users)
-\item Birthdate (of primary user and each non-Chomp user)
-\item Current weight (of primary user and each non-Chomp user)
-\item Height (of primary user and each non-Chomp user)
-\item Personal priority ranking (eg. sustainability, carbohydrate intake, finances, etc..)
+\\
+\textbf{Actions:} If the account is already setup, the dialogue will present the setup items as an editable listing rather than sequential prompts.  A dialogue will ask the user about the following items\\
+\\
+\begin{list}{•}{•}
+\item First Name
+\item Last Name
+\item Birth-date (of primary user and each non-Chomp user)
+\item Gender
 \end{list}
 Once all of this information is submitted, the user's account will be updated and the desired statistics will take priority in the nutrition and value tracking interface.  The user will see the saved account settings filled out with the option to re-edit them or to return to the home screen.\\
+\\
 \textbf{Test/Postcondition:} To confirm that the information was saved to the user's account the simplest method is to check the database entry manually.  Once the entire user interface has be implemented, the changes of this process should be visible immediately on the user's homescreen.
 \subsubsection{Login}
-\textbf{Precondition:} A registered user is returning to the site without a login cookie in their browser.\\
-\textbf{Actions:} At the centre of the screen the both username or e-mail field and password field will display for the user.  Once the fields are filled out, the user clicks the Login button.  If any error occurs, the user is notified of the problem (in a semi-specific manner that helps users without assisting intrusion attempts).  If no error occurs the user is taken to their Chomp homepage.\\
-If an unregistered username or e-mail is entered, the registration process should begin for the user with a notice that the e-mail does not seem to be registered yet.\\
-\textbf{Test/Postcondition:} An unregistered e-mail should be tried, at which time the user should be led to the registration story.  A registered account should be entered, first with an incorrect password, at which time an error message should appear, and then with a correct password, at which time the homescreen should appear.
+\hl{\textbf{Precondition:} A registered user is returning to the site without a login cookie in their browser.}\\
+\\
+\hl{\textbf{Actions:} At the centre of the screen the both username or e-mail field and password field will display for the user.  Once the fields are filled out, the user clicks the Login button.  If any error occurs, the user is notified of the problem (in a semi-specific manner that helps users without assisting intrusion attempts).  If no error occurs the user is taken to their Chomp homepage.\\
+\\
+If an unregistered username or e-mail is entered, the registration process should begin for the user with a notice that the e-mail does not seem to be registered yet.}\\
+\\
+\hl{\textbf{Test Cases include:}}
+\begin{list}{•}{•}
+
+\item \hl{\textbf{Case 1-a:}An unregistered e-mail should be tried, at which time the user should be alerted with an error message. The system should stay on the same page with previously filled out email intact, but password should be wiped clean.}
+
+\item \hl{\textbf{Case 1-b: }Non-email format is be entered with any password combination, at which time the user should be alerted with an error message same as Case 1-a. The system should stay on the same page with previously filled out email intact, but password should be wiped clean.}
+
+\item \hl{\textbf{Case 2: }A registered email and incorrect password should be entered, at which time an error message should appear (the message should be same as the invalid e-mail error message). The system should stay on same page with previously filled out email intact, but password should be wiped clean.}
+
+\item \hl{\textbf{Case 3-a: }A registered email and correct password should be entered, at which time the system should authenticate the user and keep it in a session. The system should redirect user to home page (page that is restricted to authenticated users only).}
+
+\item \hl{\textbf{Case 3-b: }User should be able to login to system with email address with different capitalization pattern.}
+\end{list}
 \subsubsection{Logout}
-\textbf{Precondition:} A user must be logged into their account.\\
-\textbf{Actions:} By hovering over the user's name in the top-right corner of the screen a drop down menu will appear that includes the logout button.  The user then clicks this button and is greeted with the login screen.\\
-\textbf{Test/Postcondition:} Follow the logout steps.  The login page should be reached.  Then attempt to visit a particular page of the user's profile.  This test should return an error.
+\hl{\textbf{Precondition:}All users that are logged into an existing account.}\\
+\\
+\hl{\textbf{Test Cases include: }}
+\begin{list}{•}{•}
+\item \hl{\textbf{Base case: }Follow the logout steps. The login page should be reached. Then attempt to visit a particular page of the user's profile. This test should return an error.}
+\end{list}
+\hl{\textbf{Actions:} By hovering over the user's name in the top-right corner of the screen a drop down menu will appear that includes the logout button.  The user then clicks this button and is greeted with the login screen.}\\
+
+\subsubsection{Account Adjustment}
+\textbf{Precondition:} The user has on the 'Account Settings' button of their user profile.\\
+\\
+\textbf{Action/Postcondition:} The setup items will be presented as an editable listing of:
+\begin{list}{•}{•}
+\item Birth
+\item Gender
+\item First Name
+\item Last Name
+\end{list}
+\\
+Once all of this information is submitted, the user's account will be updated and the desired statistics will take priority in the nutrition and value tracking interface. The user will see the saved account settings filled out with the option to re-edit them or to return to the home screen.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{User Interface Requirements}
 There are three major sections of our user interface that should be considered critical to the application's success.  Furthermore, we have ideas for expansion and additional feature that we will describe briefly in this section.
@@ -93,9 +137,28 @@ This section of the homepage should give weekly, monthly, and yearly charts of t
 This section is the user's administrative section over their entire account.  Here they can tweak what they want Chomp to help them with.
 \subsection{Additional Interface Ideas}
 These will be filled in in later iterations of this document.
+\subsubsection{U.I Mock-ups}
+\hl{\textbf{Login :}}\\
+\includegraphics[scale=0.3]{login.png}\\
+\\
+\newpage
+\hl{\textbf{Registration :}}\\
+\includegraphics[scale=0.3]{regist.png}\\
+\\
+\hl{\textbf{Profile :}}\\
+\includegraphics[scale=0.09]{pProfile.JPG}\\
+\newpage
+\hl{\textbf{Main Page :}}\\
+\includegraphics[scale=0.09]{mainPage.JPG}\\
+\\
+\hl{\textbf{Food History :}}\\
+\includegraphics[scale=0.09]{foodHistory.JPG}\\
+
+
 \subsubsection{Suggested Meal Listing}
 \subsubsection{Community Support Feed}
 \subsubsection{Grocery Bill/List Tracking}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage 
 \begin{appendices}
