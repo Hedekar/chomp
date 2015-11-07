@@ -11,38 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151021043910) do
+ActiveRecord::Schema.define(version: 20151107035057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "profiles", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "gender"
     t.date     "birth"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "weights", force: :cascade do |t|
+    t.integer  "Weight"
+    t.string   "Units"
+    t.datetime "Date"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
-
-  create_table "users", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "gender"
-    t.date     "birth"
-  end
+  add_index "weights", ["user_id"], name: "index_weights_on_user_id", using: :btree
 
   create_table "welcomes", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "profiles", "users"
+  add_foreign_key "weights", "users"
 end

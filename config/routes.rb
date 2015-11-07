@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :weights
   get 'welcome/index'
   get 'profile/edit'
   
