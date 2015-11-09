@@ -13,11 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
-body {
-  background-image: url(/assets/crystalPattern20150727.png);
-}
-
 .input_item {
   margin-bottom: 10px;
 }
