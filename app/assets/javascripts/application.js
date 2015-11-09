@@ -40,8 +40,10 @@ function stylize_nutrition_window() {
 
 function submit_nutrition_form() {
   $("#nutrition_form").submit();
-  update_profile_panel();
   $("#my-modal").modal('hide');
+  setTimeout(function() {
+    update_profile_panel();
+  }, 3000);
 }
 
 function update_profile_panel() {
