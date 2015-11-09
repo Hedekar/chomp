@@ -12,7 +12,7 @@
     
     <div class="input_item"> 
       Birth:</br> 
-      <%= f.date_select :birth, :start_year=>1900 %>
+      <%= f.date_select :birth, :start_year=>Date.today.year-100, :end_year=>Date.today.year %>
     </div>
     
     <div class="input_item"> 

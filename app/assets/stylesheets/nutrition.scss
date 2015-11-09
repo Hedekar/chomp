@@ -1,0 +1,142 @@
+// Place all the styles related to the nutrition controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search_box {
+  padding: 20px;
+  background-color: #407F7F;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin-bottom: 10px;
+  
+  input {
+    color: black;
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  input[type=submit] {
+    padding: 10px 20px;
+    color: white;
+    text-transform: uppercase;
+    background-color: orange;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  
+  input[type=submit]:hover {
+    background-color: #CCCCCC;
+    color: #333333;
+  }
+}
+
+.pagination {
+  text-align: center;
+  width: 100%;
+  
+  .selected {
+    font-weight: bold;
+    color: #aa3939;
+  }
+  
+  input {
+    margin: 4px 2px;
+  }
+}
+
+.error_list {
+  border: 2px solid #CCC;
+  margin-bottom: 10px;
+  .item {
+    padding: 100px 10px;
+    background-color: #FFF;
+    color: #CCC;
+    text-align:center;
+  }
+}
+
+.list
+{
+  border: 2px solid #CCC;
+  margin-bottom: 10px;
+  .item 
+  {
+    position:relative;
+    border-bottom: 1px dashed #CCC;
+    padding: 10px;
+    .desc {
+      float: left;
+      margin-right: 70px;
+      span {
+        font-size: 11px;
+        color: #999;
+      }
+    }
+    .btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+  }
+  .item::after {
+    content: "";
+    display:block;
+    clear:both;
+  }
+}
+
+.nutrition_details
+{
+  border: 2px solid #CCC;
+  margin-bottom: 10px;
+  .item 
+  {
+    float:left;
+    width: 50%;
+    border-bottom: 1px dashed #CCC;
+    padding: 5px;
+    .desc {
+      float: left;
+      margin-right: 100px;
+      span {
+        font-size: 11px;
+        color: #999;
+      }
+    }
+    .unit {
+      float: right;
+    }
+  }
+  .item.left {
+    border-right: 1px solid #CCC;
+  }
+  .item.right {
+    
+  }
+  .item::after {
+    content: "";
+    display:block;
+    clear:both;
+  }
+  
+  .input_list {
+    clear: both;
+    padding: 20px;
+    background-color: #E5E5E5;
+    .input_item {
+      position:relative;
+      padding: 10px;
+      .input_label {
+        float: left;
+        font-size: 20px;
+      }
+      .input_field {
+        float:right;
+      }
+    }
+    .input_item::after {
+      content: "";
+      display:block;
+      clear:both;
+    }
+  }
+}

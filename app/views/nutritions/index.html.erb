@@ -1,0 +1,52 @@
+<div class="search_box">
+  <%= form_tag({controller: "nutritions", action: "index"}, method: "get") do %>
+    <%= text_field_tag(:keyword, params[:keyword]) %>
+    <%= hidden_field_tag(:page, 1) %>
+    <%= submit_tag("Search") %>
+  <% end %>
+</div>
+
+<% if @nutritions["errors"] != nil %>
+  <div class="error_list">
+    <% @nutritions["errors"]["error"].each do |x| %>
+      <div class="item">
+        <%= x["status"] %> - <%= x["message"] %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  
+  <div class="list">
+    <% @nutritions["list"]["item"].each do |x| %>
+      <div class="item">
+        <div class="desc">
+          <span class="group"><%= x["group"] %></span><br />
+          <%= x["name"] %>
+        </div>
+        <%= link_to "Add", nutrition_path(x["ndbno"]), :class => "btn btn-default", data: {toggle: "modal", target: "#my-modal" } %>
+      </div>
+    <% end %>
+    
+    <div class="pagination">
+      <% if @nutritions["min_page"] != 1 %>
+        <%= tag "input", {"type" => "button", "value" => "1", "onclick" => "nutritions_search_update_page(1)" } %>
+        .. 
+      <% end %>
+      
+      <% (@nutritions["min_page"] .. @nutritions["max_page"]).each do |i| %>
+        <% if i == @nutritions["current_page"] %>
+          <%= tag "input", {"type" => "button", "value" => i, "onclick" => "nutritions_search_update_page(#{i})", "class" => "selected" } %>
+        <% else %>
+          <%= tag "input", {"type" => "button", "value" => i, "onclick" => "nutritions_search_update_page(#{i})" } %>
+        <% end %>
+      <% end %>
+      
+      <% if @nutritions["max_page"] != @nutritions["total_pages"] %>
+        .. 
+        <%= tag "input", {"type" => "button", "value" => @nutritions["total_pages"], "onclick" => "nutritions_search_update_page(#{@nutritions["total_pages"]})" } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<%= render 'layouts/modal' %>

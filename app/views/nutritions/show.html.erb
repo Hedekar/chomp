@@ -1,0 +1,52 @@
+<% if @nutrition["errors"] == nil %>
+
+  <% content_for :title do %>
+    <%= @nutrition["report"]["food"]["name"] %>
+  <% end %>
+  
+  
+  <div class="nutrition_details">
+    <% @nutrition["report"]["food"]["nutrients"].each do |x| %>
+      <div class="item">
+        <span class="desc"><%= x["name"] %></span>
+        <span class="unit"><%= x["value"] %> <%= x["unit"] %></span>
+      </div>
+    <% end %>
+    
+    <%= form_for :food, url: {controller: "nutritions"}, remote: true, html: {id: "nutrition_form"}, method: "post" do %>
+      <%= hidden_field_tag(:ndbno, params[:id]) %>
+      <%= hidden_field_tag(:name, @nutrition["report"]["food"]["name"]) %>
+      <div class="input_list">
+        <div class="input_item">
+          <div class="input_label">Date </div>
+          <div class="input_field">
+          <%= date_select :date, "d", start_year: Date.today.year-100, end_year: Date.today.year, selected: Date.today %>
+          </div>
+        </div>
+        <div class="input_item">
+          <div class="input_label">How many servings? </div>
+          <div class="input_field">
+          <%= number_field_tag :serving, 1 %> 
+          </div>
+        </div>
+        <div class="input_item">
+          <div class="input_label">Category </div>
+          <div class="input_field">
+          <%= select_tag(:category, options_for_select([['Breakfast',1],['Lunch',2],['Dinner',3],['Snack',4],['Others',5]])) %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  
+  <% content_for :footer do %>
+    <button class="btn btn-primary" onclick="submit_nutrition_form()">Add</button>
+  <% end %>
+  
+  <script type="text/javascript">
+    $(document).ready(function(){
+      stylize_nutrition_window();
+    });
+  </script>
+  
+<% end %>

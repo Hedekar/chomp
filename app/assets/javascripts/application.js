@@ -15,3 +15,35 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).on('hidden.bs.modal', function(e) {
+  $(e.target).removeData('bs.modal');
+});
+
+function nutritions_search_update_page(page)
+{
+  $("input[name=page]").val(page);
+  $("input[type=submit]").click();
+}
+
+function stylize_nutrition_window() {
+  var i =0;
+  $(".nutrition_details .item").each(function(){
+    if(i%2==0)
+      $(this).addClass("left");
+    else
+      $(this).addClass("right");
+    
+    i++;
+  });
+}
+
+function submit_nutrition_form() {
+  $("#nutrition_form").submit();
+  $("#my-modal").modal('hide');
+  update_profile_panel();
+}
+
+function update_profile_panel() {
+  $("#tracking_box").load("/track");
+}

@@ -1,0 +1,80 @@
+#meal_tracker_intro {
+  padding: 100px;
+  background-color: #407F7F;
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  
+  .text_desc {
+    font-family: 'Josefin Slab', serif;
+    font-size: 36px;
+    line-height: 60px;
+  }
+  
+  input {
+    margin-top: 20px;
+    color: black;
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  input[type=submit] {
+    padding: 10px 20px;
+    color: white;
+    text-transform: uppercase;
+    background-color: orange;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  
+  input[type=submit]:hover {
+    background-color: #CCCCCC;
+    color: #333333;
+  }
+}
+
+.graphs {
+  margin: 20px 0;
+  border: 1px solid #CCC;
+  background-color: #FFF;
+  padding: 20px;
+}
+
+.user_window {
+  border: 1px solid #CCC;
+  background-color: #F6FBFB;
+  font-size: 16px;
+  color: #333333;
+  
+  img {
+    width: 100%;
+  }
+  .profile {
+    border-bottom: 1px solid #CCC;
+    background-color: #E5E5E5;
+    text-align:center;
+    .name {
+      padding: 10px;
+      padding-bottom: 0;
+      font-weight: bold;
+    }
+    .controls {
+      padding: 10px;
+    }
+  }
+  .track_list {
+    padding: 15px 10px;
+    .track_item {
+      padding: 15px;
+      .header {
+        font-size: 11px;
+        color: #999999;
+      }
+      .food_item {
+        font-size: 11px;
+        border-bottom: 1px dashed #CCCCCC;
+        padding: 10px 0;
+      }
+    }
+  }
+}

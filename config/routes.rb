@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
   
+  resources :nutrients
+  resources :foods
   resources :weights
+  
   get 'welcome/index'
   get 'profile/edit'
   
   controller :dashboard do
     get 'home' => :index
+    get 'track' => :show
   end
   
   controller :sessions do
@@ -17,6 +21,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :profile
   end
+  
+  resources :nutritions
+  resources :meals
   
   #controller :users do
   #  get 'edit_account' => :edit_account

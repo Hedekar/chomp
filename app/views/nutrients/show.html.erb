@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Ref:</strong>
+  <%= @nutrient.ref_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @nutrient.name %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @nutrient.group %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @nutrient.unit %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @nutrient.value %>
+</p>
+
+<p>
+  <strong>Food:</strong>
+  <%= @nutrient.food %>
+</p>
+
+<%= link_to 'Edit', edit_nutrient_path(@nutrient) %> |
+<%= link_to 'Back', nutrients_path %>
