@@ -41,7 +41,6 @@ function stylize_nutrition_window() {
 function submit_nutrition_form() {
   $("#nutrition_form").submit();
   update_profile_panel();
-  alert(1234);
   $("#my-modal").modal('hide');
 }
 
