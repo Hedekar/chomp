@@ -16,13 +16,15 @@ class ApplicationController < ActionController::Base
   
   def todays_calories
     food = Food.new()
-    @current_calories = food.count_calories(current_user.id, Date.today)
+    now = Time.now.in_time_zone('Pacific Time (US & Canada)').to_date
+    @current_calories = food.count_calories(current_user.id, now)
   end
   helper_method :todays_calories
   
   def todays_foods
     food = Food.new()
-    @current_breakfast = food.get_food_list(current_user.id, Date.today, 0)
+    now = Time.now.in_time_zone('Pacific Time (US & Canada)').to_date
+    @current_breakfast = food.get_food_list(current_user.id, now, 0)
   end
   helper_method :todays_foods
   

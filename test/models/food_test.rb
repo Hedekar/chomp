@@ -36,7 +36,8 @@ class FoodTest < ActiveSupport::TestCase
     food.serving = 1.5
     food.category = 1
     food.save
-    assert food.date = Date.today
+    
+    assert food.date = Time.now.in_time_zone('Pacific Time (US & Canada)').to_date
   end
   
   test "Category should not save -1" do

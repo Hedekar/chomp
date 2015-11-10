@@ -7,7 +7,7 @@ class Food < ActiveRecord::Base
   
   def date=(val)
     if(val.blank?)
-      write_attribute(:date, Date.today)
+      write_attribute(:date, Time.now.in_time_zone('Pacific Time (US & Canada)').to_date)
     else
       write_attribute(:date, val)
     end
