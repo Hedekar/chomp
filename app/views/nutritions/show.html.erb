@@ -20,7 +20,7 @@
         <div class="input_item">
           <div class="input_label">Date </div>
           <div class="input_field">
-          <%= date_select :date, "d", start_year: Date.today.year-100, end_year: Date.today.year, selected: Date.today %>
+          <%= date_select :date, "d", start_year: Date.today.year-100, end_year: Date.today.year, selected: @now %>
           </div>
         </div>
         <div class="input_item">

@@ -6,6 +6,7 @@ class NutritionsController < ApplicationController
   end
   
   def show
+    @now = Time.now.in_time_zone('Pacific Time (US & Canada)').to_date
     @nutrition = Nutrition.get_detail(params[:id])
     render layout: "modal"
   end
