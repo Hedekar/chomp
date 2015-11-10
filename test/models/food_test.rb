@@ -20,6 +20,16 @@ class FoodTest < ActiveSupport::TestCase
     assert food.date = Date.today
   end
   
+  test "Valid Date should saved" do
+    food = Food.new
+    food.name = "John Doe"
+    food.date = "20151109"
+    food.serving = 1.5
+    food.category = 1
+    food.save
+    assert food.date = "20151109"
+  end
+  
   test "Empty Date should save todays date" do
     food = Food.new
     food.name = "John Doe"

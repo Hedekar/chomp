@@ -8,6 +8,8 @@ class Food < ActiveRecord::Base
   def date=(val)
     if(val.blank?)
       write_attribute(:date, Date.today)
+    else
+      write_attribute(:date, val)
     end
   end
   
