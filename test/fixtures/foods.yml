@@ -1,15 +1,43 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: "Breakfast(1) - 33"
   date: 2015-11-09
   serving: 1.5
   category: 1
-  user_id: 
+  user_id: 33
 
 two:
-  name: MyString
+  name: "Lunch(1) - 33"
   date: 2015-11-09
   serving: 1.5
+  category: 2
+  user_id: 33
+
+three:
+  name: "Breakfast(2) - 33"
+  date: 2015-11-09
+  serving: 1.0
   category: 1
-  user_id: 
+  user_id: 33
+  
+four:
+  name: "Lunch(2) - 33"
+  date: 2015-11-09
+  serving: 6.0
+  category: 2
+  user_id: 33
+  
+five:
+  name: "Other User"
+  date: 2015-11-09
+  serving: 6.0
+  category: 2
+  user_id: 22
+  
+six:
+  name: "Other Date"
+  date: 2015-11-07
+  serving: 6.0
+  category: 2
+  user_id: 33

@@ -1,13 +1,13 @@
 <div class="track_item">
   <div class="header">Calorie Count:</div>
-  <div class="details"><%= calories_count %> kcal</div>
+  <div class="details"><%= todays_calories %> kcal</div>
 </div>
 
-<% if get_todays_foods.any? %>
+<% if todays_foods.any? %>
 <div class="track_item">
   <div class="header">Today's Meals:</div>
   <div class="details">
-    <% get_todays_foods.each do |x| %>
+    <% todays_foods.each do |x| %>
       <div class="food_item">
         <%= x["name"] %>
       </div>

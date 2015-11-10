@@ -14,22 +14,17 @@ class ApplicationController < ActionController::Base
     redirect_to login_path unless current_user
   end
   
-  def calories_count
-    @calories_count = 0
-    
-    calories_ref_id = 208
-    list_of_foods = Food.where(:user_id => current_user.id, :date => Date.today)
-    list_of_foods.each do |f| 
-      
-      list_of_cal = Nutrient.where(:food_id => f["id"], :ref_id => calories_ref_id)
-      list_of_cal.each do |c|
-        @calories_count = @calories_count + (c["value"] * f["serving"]).to_i
-      end
-    end
-    
-    return @calories_count
+  def todays_calories
+    food = Food.new()
+    @current_calories = food.count_calories(current_user.id, Date.today)
   end
-  helper_method :calories_count
+  helper_method :todays_calories
+  
+  def todays_foods
+    food = Food.new()
+    @current_breakfast = food.get_food_list(current_user.id, Date.today, 0)
+  end
+  helper_method :todays_foods
   
   def current_weight
     @current_weight = ""
@@ -39,9 +34,4 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :current_weight
-  
-  def get_todays_foods
-    @get_todays_foods = Food.where(:user_id => current_user.id, :date => Date.today).order(:category)
-  end
-  helper_method :get_todays_foods
 end
