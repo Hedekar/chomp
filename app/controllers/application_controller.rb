@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   
   def current_weight
     @current_weight = ""
-    weight = Weight.where(:user_id => current_user.id).order(:Date).last
+    weight = Weight.where(:user_id => current_user.id).order(:Date).first
     if weight != nil
       @current_weight = weight["Weight"].to_s + " " + weight["Units"]
     end

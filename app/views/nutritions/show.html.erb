@@ -13,7 +13,7 @@
       </div>
     <% end %>
     
-    <%= form_for :food, url: {controller: "nutritions"}, remote: true, html: {id: "nutrition_form"}, method: "post" do %>
+    <%= form_for :food, url: {controller: "nutritions"}, html: {id: "nutrition_form"}, method: "post" do %>
       <%= hidden_field_tag(:ndbno, params[:id]) %>
       <%= hidden_field_tag(:name, @nutrition["report"]["food"]["name"]) %>
       <div class="input_list">
