@@ -1,39 +1,44 @@
 Rails.application.routes.draw do
-  
+
   resources :nutrients
   resources :foods
   resources :weights
-  
+
   get 'welcome/index'
   get 'profile/edit'
-  
+
+  get 'graph/index'
+  get 'graph/data', :defaults => { :format => 'json' }
+
   controller :dashboard do
     get 'home' => :index
     get 'track' => :show
   end
-  
+
   controller :sessions do
     get 'login' => :new
     post 'login' => :create
     get 'logout' => :destroy
   end
-  
+
   resources :users do
     resources :profile
   end
-  
+
   resources :nutritions
   resources :meals
-  
+
+
+
   #controller :users do
   #  get 'edit_account' => :edit_account
   #  post 'edit_account' => :update_acccount
   #  get 'edit_profile' => :edit_profile
   #  post 'edit_profile' => :update_profile
   #end
-  
+
   root 'welcome#index'
-  
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

@@ -28,17 +28,6 @@ ActiveRecord::Schema.define(version: 20151109044426) do
 
   add_index "foods", ["user_id"], name: "index_foods_on_user_id", using: :btree
 
-  create_table "meals", force: :cascade do |t|
-    t.string   "title"
-    t.date     "date"
-    t.string   "group"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "meals", ["user_id"], name: "index_meals_on_user_id", using: :btree
-
   create_table "nutrients", force: :cascade do |t|
     t.integer  "ref_id"
     t.string   "name"
@@ -52,27 +41,15 @@ ActiveRecord::Schema.define(version: 20151109044426) do
 
   add_index "nutrients", ["food_id"], name: "index_nutrients_on_food_id", using: :btree
 
-  create_table "profiles", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "gender"
-    t.date     "birth"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "gender"
     t.date     "birth"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "weights", force: :cascade do |t|
@@ -93,8 +70,6 @@ ActiveRecord::Schema.define(version: 20151109044426) do
   end
 
   add_foreign_key "foods", "users"
-  add_foreign_key "meals", "users"
   add_foreign_key "nutrients", "foods"
-  add_foreign_key "profiles", "users"
   add_foreign_key "weights", "users"
 end

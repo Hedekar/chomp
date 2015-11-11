@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+//= require d3
 
 $(document).on('hidden.bs.modal', function(e) {
   $(e.target).removeData('bs.modal');
@@ -33,7 +34,7 @@ function stylize_nutrition_window() {
       $(this).addClass("left");
     else
       $(this).addClass("right");
-    
+
     i++;
   });
 }

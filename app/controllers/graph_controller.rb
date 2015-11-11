@@ -1,8 +1,7 @@
-class DashboardController < ApplicationController
-  def show
-    render layout: "blank"
+class GraphController < ApplicationController
+  def index
   end
-  
+
   def data
     respond_to do |format|
       format.json {
