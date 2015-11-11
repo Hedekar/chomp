@@ -41,10 +41,14 @@ function stylize_nutrition_window() {
 
 function submit_nutrition_form() {
   $("#nutrition_form").submit();
-  $("#my-modal").modal('hide');
-  setTimeout(function() {
-    update_profile_panel();
-  }, 3000);
+  //$("#my-modal").modal('hide');
+  //setTimeout(function() {
+  //  update_profile_panel();
+  //}, 3000);
+}
+
+function submit_weight_form() {
+  $("#new_weight").submit();
 }
 
 function update_profile_panel() {

@@ -103,7 +103,12 @@
                   <div class="details"><%= current_weight %></div>
                 </div>
                 <% end %>
+                
               </div>
+            </div>
+            
+            <div class="extra_controls">
+              <%= link_to "Track Weight", new_weight_path(), :class => "btn btn-default", data: {toggle: "modal", target: "#my-modal" } %>
             </div>
           <% else %>
             <div class="well sidebar-nav">
@@ -115,6 +120,8 @@
           <% end %>
         </div>
       </div>
+      
+      <%= render 'layouts/modal' %>
 
       <footer>
         <p>&copy; CHOMP 2015</p>

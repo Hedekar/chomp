@@ -21,7 +21,20 @@ class WeightsController < ApplicationController
 
   # GET /weights/new
   def new
+    
     @weight = Weight.new
+    current_weight = Weight.where(:user_id => current_user.id).order(:Date).first
+    now = Time.now.in_time_zone('Pacific Time (US & Canada)').to_date
+    if current_weight != nil
+      @weight.Weight = current_weight.Weight
+      @weight.Units = current_weight.Units
+    else
+      @weight.Weight = 1
+      @weight.Units = "lb"
+    end
+    @weight.Date = now
+    
+    render layout: "modal"
   end
 
   # GET /weights/1/edit
@@ -35,14 +48,13 @@ class WeightsController < ApplicationController
     params[:weight][:user_id]=current_user.id
 
     @weight = Weight.new(weight_params)
-
     respond_to do |format|
       if @weight.save
-        format.html { redirect_to @weight, notice: 'Weight was successfully created.' }
-        format.json { render :show, status: :created, location: @weight }
+        format.html { redirect_to :back, notice: 'Weight was successfully updated.' }
+        format.json { redirect_to :show, status: :ok, location: @weight }
       else
-        format.html { render :new }
-        format.json { render json: @weight.errors, status: :unprocessable_entity }
+        format.html { redirect_to :back, :flash => { :error => 'Invalid format!' } }
+        format.json { redirect_to json: @weight.errors, status: :unprocessable_entity }
       end
     end
   end
