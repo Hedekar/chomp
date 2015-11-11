@@ -84,5 +84,5 @@ production:
   <<: *default
   database: chomp_production
   template: template0
-  username: chomp
-  password: <%= ENV['CHOMP_DATABASE_PASSWORD'] %>
+  username: ubuntu
+  password: 
