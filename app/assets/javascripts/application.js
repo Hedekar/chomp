@@ -15,6 +15,7 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+//= require d3
 
 $(document).on('hidden.bs.modal', function(e) {
   $(e.target).removeData('bs.modal');
@@ -33,17 +34,21 @@ function stylize_nutrition_window() {
       $(this).addClass("left");
     else
       $(this).addClass("right");
-    
+
     i++;
   });
 }
 
 function submit_nutrition_form() {
   $("#nutrition_form").submit();
-  $("#my-modal").modal('hide');
-  setTimeout(function() {
-    update_profile_panel();
-  }, 3000);
+  //$("#my-modal").modal('hide');
+  //setTimeout(function() {
+  //  update_profile_panel();
+  //}, 3000);
+}
+
+function submit_weight_form() {
+  $("#new_weight").submit();
 }
 
 function update_profile_panel() {

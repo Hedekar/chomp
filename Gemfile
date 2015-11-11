@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# add d3 support for graphs
+gem 'd3-rails'
+
 # For google login api from instructions at https://github.com/zquestz/omniauth-google-oauth2
 gem 'omniauth-google-oauth2', :git => 'git://github.com/zquestz/omniauth-google-oauth2'
 
