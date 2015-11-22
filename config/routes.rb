@@ -7,12 +7,11 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'profile/edit'
 
-  get 'graph/index'
-  get 'graph/data', :defaults => { :format => 'json' }
 
   controller :dashboard do
     get 'home' => :index
     get 'track' => :show
+    get 'data', :defaults => { :format => 'json' }
   end
 
   controller :sessions do
