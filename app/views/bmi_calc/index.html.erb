@@ -1,0 +1,29 @@
+<h1>Calculate Your Body Mass Index</h1>
+
+<%= form_tag(calculate_bmi_calc_index_path) do %>
+
+  <div class="input_item"> 
+      Height(cm):</br> 
+      <%= text_field_tag "heightinput" %>
+  </div>
+  
+  <div class="input_item"> 
+      Weight(kg):</br> 
+      <%= text_field_tag "weightinput" %>
+  </div>
+  
+  <div class="form_controls">
+      <%= submit_tag 'Calculate' %>
+  </div>
+
+<% end %>
+
+<br>
+
+<% if @result.blank? %>
+
+<% else %>
+
+  <p>The calculated body mass index is: </p><%= @result %>
+
+<% end %>
