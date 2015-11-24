@@ -29,6 +29,19 @@
 <% else %>
 
   <p>The calculated body mass index is: </p><%= @result %>
+  
+  <% if @result < 18.5 %>
+    <p>You are currently underweight.</p>
+  <% end %>
+  <% if @result >= 18.5 and @result < 25%>
+    <p>You are at a normal weight.</p>
+  <% end %>
+  <% if @result >= 25 and @result < 30%>
+    <p>You are currently overweight.</p>
+  <% end %>
+  <% if @result >= 30%>
+    <p>You are currently obese.</p>
+  <% end %>
 
 <% end %>
 
@@ -65,10 +78,32 @@
 
 <% else %>
 
-  <p>The calculated body mass index is: </p><%= @imp %>
+<p>The calculated body mass index is: </p><%= @imp %>
 
+  <% if @imp < 18.5 %>
+    <p>You are currently underweight.</p>
+  <% end %>
+  <% if @imp >= 18.5 and @imp < 25%>
+    <p>You are at a normal weight.</p>
+  <% end %>
+  <% if @imp >= 25 and @imp < 30%>
+    <p>You are currently overweight.</p>
+  <% end %>
+  <% if @imp >= 30%>
+    <p>You are currently obese.</p>
+  <% end %>
+  
 <% end %>
 
 <br><br>
 
 <%= link_to 'Back', current_user %>
+
+<br><br>
+
+<p style="font-size:160%">BMI Categories:</p><br>
+
+<p>Underweight: BMI < 18.5</p>
+<p>Normal weight: 18.5 =< BMI < 25<p>
+<p>Overweight: 25 =< BMI < 30</p>
+<p>Obesity: BMI >= 30</p>
