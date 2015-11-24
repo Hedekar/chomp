@@ -1,5 +1,9 @@
 <h1>Calculate Your Body Mass Index</h1>
 
+<br><br>
+
+<p style="font-size:160%">Metric</p>
+
 <%= form_tag(calculate_bmi_calc_index_path) do %>
 
   <div class="input_item"> 
@@ -25,6 +29,43 @@
 <% else %>
 
   <p>The calculated body mass index is: </p><%= @result %>
+
+<% end %>
+
+<br><br>
+
+<p style="font-size:160%">Imperial</p>
+
+<%= form_tag(calc_imp_bmi_calc_index_path) do %>
+
+  <div class="input_item"> 
+      Height(feet):</br> 
+      <%= text_field_tag "heightfeet" %>
+  </div>
+  
+  <div class="input_item"> 
+      Height(inch):</br> 
+      <%= text_field_tag "heightinch" %>
+  </div>
+  
+  <div class="input_item"> 
+      Weight(lb):</br> 
+      <%= text_field_tag "weightlb" %>
+  </div>
+  
+  <div class="form_controls">
+      <%= submit_tag 'Calculate' %>
+  </div>
+
+<% end %>
+
+<br>
+
+<% if @imp.blank? %>
+
+<% else %>
+
+  <p>The calculated body mass index is: </p><%= @imp %>
 
 <% end %>
 

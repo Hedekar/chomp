@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :bmi_calc do
     collection do
       post 'calculate'
+      post 'calc_imp'
     end
   end
   
