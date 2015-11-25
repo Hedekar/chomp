@@ -4,22 +4,22 @@
 
 <p style="font-size:160%">Metric</p>
 
-<%= form_tag(calculate_bmi_calc_index_path) do %>
+<%= form_tag(calc_metric_bmi_calc_index_path) do %>
 
   <div class="input_item"> 
       Height(cm):</br> 
-      <%= text_field_tag "heightinput" %>
+      <%= number_field_tag "heightinput", nil, min: 1, required: true  %>
   </div>
   
   <div class="input_item"> 
       Weight(kg):</br> 
-      <%= text_field_tag "weightinput" %>
+      <%= number_field_tag "weightinput", nil, min: 1, required: true  %>
   </div>
   
   <div class="form_controls">
       <%= submit_tag 'Calculate' %>
   </div>
-
+  
 <% end %>
 
 <br>
@@ -53,17 +53,17 @@
 
   <div class="input_item"> 
       Height(feet):</br> 
-      <%= text_field_tag "heightfeet" %>
+      <%= number_field_tag "heightfeet", nil, min: 1, required: true  %>
   </div>
   
   <div class="input_item"> 
       Height(inch):</br> 
-      <%= text_field_tag "heightinch" %>
+      <%= number_field_tag "heightinch", nil, min: 1, required: true  %>
   </div>
   
   <div class="input_item"> 
       Weight(lb):</br> 
-      <%= text_field_tag "weightlb" %>
+      <%= number_field_tag "weightlb", nil, min: 1, required: true  %>
   </div>
   
   <div class="form_controls">

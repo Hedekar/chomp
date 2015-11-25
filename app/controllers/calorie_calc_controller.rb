@@ -3,7 +3,7 @@ class CalorieCalcController < ApplicationController
   def index
   end
   
-  def calc_cal
+  def cal_metric
     
        @cal = params[:cal].to_f
        @curr_weight = params[:curr].to_f

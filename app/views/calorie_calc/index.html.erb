@@ -8,26 +8,26 @@
 
 <p style="font-size:160%">Metric</p>
 
-<%= form_tag(calc_cal_calorie_calc_index_path) do %>
+<%= form_tag(cal_metric_calorie_calc_index_path) do %>
 
   <div class="input_item"> 
       Current Calorie Intake(cal):</br> 
-      <%= text_field_tag "cal" %>
+      <%= number_field_tag "cal", nil, min: 1, required: true %>
   </div>
 
   <div class="input_item"> 
       Current Weight(kg):</br> 
-      <%= text_field_tag "curr" %>
+      <%= number_field_tag "curr", nil, min: 1, required: true %>
   </div>
   
   <div class="input_item"> 
       Target Weight(kg):</br> 
-      <%= text_field_tag "targ" %>
+      <%= number_field_tag "targ", nil, min: 1, required: true %>
   </div>
   
   <div class="input_item"> 
       Number of Days:</br> 
-      <%= text_field_tag "days" %>
+      <%= number_field_tag "days", nil, min: 1, required: true %>
   </div>
   
   <div class="form_controls">
