@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  get 'calorie_calc/index'
+  
+  resources :calorie_calc do
+    collection do
+      post 'calc_cal'
+    end
+  end
+
   get 'bmi_calc/index'
   
   resources :bmi_calc do
