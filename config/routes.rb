@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :calorie_calc do
     collection do
       post 'cal_metric'
+      post 'cal_imp'
     end
   end
 
@@ -12,8 +13,8 @@ Rails.application.routes.draw do
   
   resources :bmi_calc do
     collection do
-      post 'calc_metric'
-      post 'calc_imp'
+      post 'bmi_metric'
+      post 'bmi_imp'
     end
   end
   

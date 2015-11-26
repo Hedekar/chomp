@@ -1,10 +1,19 @@
 <h1>Calculate Your Body Mass Index</h1>
 
+<br><p style="font-size:160%">BMI Categories:</p><br>
+
+<p>Underweight: BMI < 18.5</p>
+<p>Normal weight: 18.5 =< BMI < 25<p>
+<p>Overweight: 25 =< BMI < 30</p>
+<p>Obesity: BMI >= 30</p>
+
+<%= link_to 'Back to Profile', current_user %>
+
 <br><br>
 
 <p style="font-size:160%">Metric</p>
 
-<%= form_tag(calc_metric_bmi_calc_index_path) do %>
+<%= form_tag(bmi_metric_bmi_calc_index_path) do %>
 
   <div class="input_item"> 
       Height(cm):</br> 
@@ -28,7 +37,7 @@
 
 <% else %>
 
-  <p>The calculated body mass index is: </p><%= @result %>
+  <p>The calculated body mass index is: <ins><%= @result %></ins>.</p>
   
   <% if @result < 18.5 %>
     <p>You are currently underweight.</p>
@@ -49,7 +58,7 @@
 
 <p style="font-size:160%">Imperial</p>
 
-<%= form_tag(calc_imp_bmi_calc_index_path) do %>
+<%= form_tag(bmi_imp_bmi_calc_index_path) do %>
 
   <div class="input_item"> 
       Height(feet):</br> 
@@ -78,7 +87,7 @@
 
 <% else %>
 
-<p>The calculated body mass index is: </p><%= @imp %>
+<p>The calculated body mass index is: <ins><%= @imp %></ins>.</p>
 
   <% if @imp < 18.5 %>
     <p>You are currently underweight.</p>
@@ -94,16 +103,3 @@
   <% end %>
   
 <% end %>
-
-<br><br>
-
-<%= link_to 'Back', current_user %>
-
-<br><br>
-
-<p style="font-size:160%">BMI Categories:</p><br>
-
-<p>Underweight: BMI < 18.5</p>
-<p>Normal weight: 18.5 =< BMI < 25<p>
-<p>Overweight: 25 =< BMI < 30</p>
-<p>Obesity: BMI >= 30</p>

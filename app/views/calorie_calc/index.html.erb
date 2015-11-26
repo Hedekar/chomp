@@ -1,8 +1,8 @@
 <h1>Daily Calorie Intake Suggestion</h1>
 
-<br><br>
+<br><p style="font-size:160%">Disclaimer:</p><br>
 
-<p style="font-size:160%">Disclaimer:</p>
+<%= link_to 'Back to Profile', current_user %>
 
 <br><br>
 
@@ -77,6 +77,71 @@
 
 <br><br>
 
-<%= link_to 'Back', current_user %>
+<p style="font-size:160%">Imperial</p>
 
-<br><br>
+<%= form_tag(cal_imp_calorie_calc_index_path) do %>
+
+  <div class="input_item"> 
+      Current Calorie Intake(cal):</br> 
+      <%= number_field_tag "cal", nil, min: 1, required: true %>
+  </div>
+
+  <div class="input_item"> 
+      Current Weight(lb):</br> 
+      <%= number_field_tag "curr", nil, min: 1, required: true %>
+  </div>
+  
+  <div class="input_item"> 
+      Target Weight(lb):</br> 
+      <%= number_field_tag "targ", nil, min: 1, required: true %>
+  </div>
+  
+  <div class="input_item"> 
+      Number of Days:</br> 
+      <%= number_field_tag "days", nil, min: 1, required: true %>
+  </div>
+  
+  <div class="form_controls">
+      <%= submit_tag 'Calculate' %>
+  </div>
+
+<% end %>
+
+<br>
+
+<% if @res_imp.blank? %>
+
+<% else %>
+
+  <% if @targ_weight >= @curr_weight %>
+  
+    <% if @res_imp-@cal > 3300 %>
+    
+      <p>That goal is unrealistic. You are trying to gain too much weight in too short a time.</p>
+      
+    <% else %>
+    
+    <p>The suggested daily calorie intake is +<ins><%= @res_imp %></ins> calories of your current daily calorie intake.</p>
+    <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= @cal+@res_imp %></ins>
+    calories per day over the next <ins><%= @days %></ins> days to hit your target weight of <ins><%= @targ_weight %></ins> lb.</p>
+    
+    <% end %>
+    
+  <% else %>
+  
+    <% if @cal-@res_imp < 1100 %>
+    
+      <p>That goal is unrealistic. Either your current calorie intake is not high enough to support weight loss
+      or you are trying to lose too much weight in too short a time.</p>
+      
+    <% else %>
+
+      <p>The suggested daily calorie intake is -<ins><%= @res_imp %></ins> calories of your current daily calorie intake.</p>
+      <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= @cal-@res_imp %></ins>
+      calories per day over the next <ins><%= @days %></ins> days to hit your target weight of <ins><%= @targ_weight %></ins> lb.</p>
+      
+    <% end %>
+    
+  <% end %>
+  
+<% end %>
