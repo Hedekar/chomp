@@ -1,5 +1,7 @@
 class Food < ActiveRecord::Base
   belongs_to :user
+  has_many :nutrients, dependent: :destroy
+  
   validates :user_id, presence: true
   validates :name, presence: true
   validates :category, numericality: {greater_than_or_equal_to: 1, less_than_or_equal_to: 5}
@@ -10,6 +12,21 @@ class Food < ActiveRecord::Base
       write_attribute(:date, Time.now.in_time_zone('Pacific Time (US & Canada)').to_date)
     else
       write_attribute(:date, val)
+    end
+  end
+
+  def category_desc
+    case self.category
+    when 1
+      return "Breakfast"
+    when 2
+      return "Lunch"
+    when 3
+      return "Dinner"
+    when 4
+      return "Snack"
+    else
+      return "Other"
     end
   end
   

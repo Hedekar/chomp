@@ -1,6 +1,6 @@
 #meal_tracker_intro {
   padding: 100px;
-  background-color: #407F7F;
+  background-color: #1abc9d;
   color: white;
   text-align: center;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
@@ -41,17 +41,10 @@
 }
 
 .user_window {
-  border: 1px solid #CCC;
-  background-color: #F6FBFB;
-  font-size: 16px;
-  color: #333333;
-  
-  img {
-    width: 100%;
-  }
   .profile {
-    border-bottom: 1px solid #CCC;
-    background-color: #E5E5E5;
+    border-radius: 10px 10px 10px 10px;
+    background-color: #CCC;
+    padding: 20px;
     text-align:center;
     .name {
       padding: 10px;
@@ -62,19 +55,34 @@
       padding: 10px;
     }
   }
+  .track_header {
+    margin-top: 10px;
+    background-color: #CCC;
+    padding: 10px;
+    color: #FFF;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0 ;
+  }
   .track_list {
-    padding: 15px 10px;
+    border: 2px solid #CCC;
+    border-radius: 0 0 10px 10px;
     .track_item {
-      padding: 15px;
-      .header {
+      padding: 10px;
+      border-bottom: 1px dashed #CCC;
+      .header, .note {
         font-size: 11px;
         color: #999999;
       }
       .food_item {
         font-size: 11px;
-        border-bottom: 1px dashed #CCCCCC;
-        padding: 10px 0;
       }
+    }
+    .track_item.last {
+      border-bottom: none;
+    }
+    .track_controls {
+      padding: 10px;
+      text-align: center;
     }
   }
 }

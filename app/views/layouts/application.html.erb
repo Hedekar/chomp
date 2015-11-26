@@ -1,22 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <style>
-footer {
-  position: absolute;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 0.01rem;
-  background-color: #efefef ,opacity:0.9;
-  
-  text-align: center;
-}
-
-
-
-  </style>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
@@ -55,7 +38,6 @@ footer {
     <%= javascript_include_tag "application" %>
   </head>
   <body>
-
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -63,11 +45,7 @@ footer {
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <% if current_user %>
-          <%= link_to "Chomp", home_path, {:class=>"navbar-brand"} %>
-        <% else %>
-          <%= link_to "Chomp", root_path, {:class=>"navbar-brand"} %>
-        <% end %>
+        <%= link_to "Chomp", home_path, {:class=>"navbar-brand"} %>
       </div>
     </div>
     
@@ -80,71 +58,158 @@ footer {
         </div>
         
         <div class="col-lg-3">
-          <% if current_user %>
+          <% if current_account %>
             <div class="user_window">
               
-              <%= image_tag("profile.png", :alt => "Profile Picture") %>
-                
               <div class="profile">
-                <div class="name"><%= current_user.full_name %></div>
+                <div class="name">Welcome, <%= main_user.full_name %></div>
                 <div class="controls">
-                  <%= link_to "Profile", current_user, class: "btn btn-default btn-xs" %>
+                  <%= link_to "Profile", current_account, class: "btn btn-default btn-xs" %>
                   <%= link_to "Logout", logout_path, class: "btn btn-default btn-xs" %>
                 </div>
               </div>
               
-              <div id="tracking_box" class="track_list">
-                <div class="track_item">
-                  <div class="header">Calorie Count:</div>
-                  <div class="details"><%= todays_calories %> kcal</div>
+              <% if main_user.id != nil %>
+                <div class="track_header">
+                  Today's Summary
                 </div>
-                
-                <% if todays_foods.any? %>
-                <div class="track_item">
-                  <div class="header">Today's Meals:</div>
-                  <div class="details">
-                    <% todays_foods.each do |x| %>
-                      <div class="food_item">
-                        <%= x["name"] %>
-                      </div>
-                    <% end %>
+                <div id="tracking_box" class="track_list">
+                  <div class="track_item">
+                    <div class="header">Total Calorie Intake:</div>
+                    <div class="details"><%= main_user.get_todays_calories %> kcal</div>
+                  </div>
+                  
+                  <div class="track_item">
+                    <div class="header">Current Weight:</div>
+                    <div class="details"><%= main_user.get_current_weight %></div>
+                  </div>
+                  
+                  <% if todays_food_breakfast.any? %>
+                  <div class="track_item">
+                    <div class="header">Breakfast:</div>
+                    <div class="details">
+                      <ul>
+                      <% todays_food_breakfast.each do |x| %>
+                        <li><%= x["name"] %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                  <% end %>
+                  
+                  <% if todays_food_lunch.any? %>
+                  <div class="track_item">
+                    <div class="header">Lunch:</div>
+                    <div class="details">
+                      <ul>
+                        <% todays_food_lunch.each do |x| %>
+                          <li><%= x["name"] %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                  <% end %>
+                  
+                  <% if todays_food_dinner.any? %>
+                  <div class="track_item">
+                    <div class="header">Dinner:</div>
+                    <div class="details">
+                      <ul>
+                        <% todays_food_dinner.each do |x| %>
+                          <li><%= x["name"] %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                  <% end %>
+                  
+                  <% if todays_food_snack.any? %>
+                  <div class="track_item">
+                    <div class="header">Snack:</div>
+                    <div class="details">
+                      <ul>
+                        <% todays_food_snack.each do |x| %>
+                          <li><%= x["name"] %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                  <% end %>
+                  
+                  <% if todays_food_other.any? %>
+                  <div class="track_item">
+                    <div class="header">Other:</div>
+                    <div class="details">
+                      <ul>
+                        <% todays_food_other.each do |x| %>
+                          <li><%= x["name"] %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  </div>
+                  <% end %>
+                  
+                  <div class="track_controls">
+                    <%= link_to "History", 
+                      @main_user, 
+                      :class => "btn btn-default btn-xs", 
+                      data: {toggle: "modal", target: "#my-modal" } %>
+                    <%= link_to "Weight", 
+                      new_user_weight_path(main_user), 
+                      :class => "btn btn-default btn-xs", 
+                      data: {toggle: "modal", target: "#my-modal" } %>
+                    <%= link_to "Food", 
+                      nutritions_path, 
+                      :class => "btn btn-default btn-xs" %>
                   </div>
                 </div>
-                <% end %>
                 
-                <% if current_weight.blank? %>
-                  <!-- need to put button to track weights... -->
-                <% else %>
-                <div class="track_item">
-                  <div class="header">Current Weight:</div>
-                  <div class="details"><%= current_weight %></div>
+                <div class="track_header">
+                  Others
                 </div>
-                <% end %>
-                
-              </div>
-            </div>
-            
-            <div class="extra_controls">
-              <%= link_to "Track Weight", new_weight_path(), :class => "btn btn-default", data: {toggle: "modal", target: "#my-modal" } %>
-            </div>
-          <% else %>
-            <div class="well sidebar-nav">
-              <ul class="nav nav-list">
-                <li><%= link_to "Login", login_path %></li>
-                <li><%= link_to "Register", new_user_path %></li>
-              </ul>
+                <div class="track_list">
+                  <% if other_users.any? %>
+                    <% other_users.each do |x| %>
+                      <% 
+                        if x == other_users.last
+                          c = " last"
+                        else
+                          c = ""
+                        end
+                      %>
+                      <div class="track_item<%= c %>">
+                        <div class="details"><%= x.full_name %>
+                          <span class="note">
+                          (<%= x.get_todays_calories %> kcal / <%= x.get_current_weight %>)
+                          </span>
+                        </div>
+                        <div class="track_controls">
+                          <%= link_to 'History', 
+                            x, 
+                            :class => "btn btn-default btn-xs", 
+                            data: {toggle: "modal", target: "#my-modal" } %>
+                          <%= link_to "Weight", 
+                            new_user_weight_path(x), 
+                            :class => "btn btn-default btn-xs", 
+                            data: {toggle: "modal", target: "#my-modal" } %>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+              
+              
+              
             </div>
           <% end %>
         </div>
       </div>
       
       <%= render 'layouts/modal' %>
-
-
-
     </div> <!-- /container -->
     <footer>
-        <p>&copy; CHOMP 2015</p>
+        &copy; CHOMP 2015
     </footer>
   </body>
 </html>

@@ -1,31 +1,74 @@
-<h2>Account</h2>
-<div>
-  Email: <%= @user.email %>
+<% content_for :title do %>
+  <%= @user.full_name %> (<%= @user.gender_desc %>, <%= @user.age %>)
+<% end %>
+
+<div class="list_header">
+  Listing Weights
 </div>
+<% if @weights.empty? %>
+  <div class="error_list with_header">
+    <div class="item">
+      You do not have any weights record
+    </div>
+  </div>
+<% else %>
+  <div class="list with_header">
+    <% @weights.each do |weight| %>
+      <% 
+        if weight == @weights.last
+          c = " last"
+        else
+          c = ""
+        end
+      %>
+      <div class="item<%= c %>">
+        <div class="desc">
+          <span><%= weight.Date %></span> - 
+          <%= weight.Weight %> <%= weight.Units %>
+        </div>
+        <%= link_to 'Destroy', 
+          user_weight_path(params[:id], weight),
+          :class => "btn btn-default btn-xs", 
+          method: :delete, 
+          data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
-<h2>Profile</h2>
-<div>
-  First Name: <%= @user.first_name %>
+<div class="list_header">
+  Listing Foods
 </div>
-
-<div>
-  Last Name: <%= @user.last_name %>
-</div>
-
-<div>
-  Gender: <%= @user.gender_desc %>
-</div>
-
-<div>
-  Birth: <%= @user.birth %>
-</div>
-
-<%= link_to "Edit", edit_user_path %>
-
-<br><br>
-
-<%= link_to "Track Weight", weights_path %>
-
-<br>
+<% if @foods.empty? %>
+  <div class="error_list with_header">
+    <div class="item">
+      You do not have any weights record
+    </div>
+  </div>
+<% else %>
+  <div class="list with_header">
+    <% @foods.each do |food| %>
+      <% 
+        if food == @foods.last
+          c = " last"
+        else
+          c = ""
+        end
+      %>
+      <div class="item<%= c %>">
+        <div class="desc">
+          <span><%= food.date %> (<%= food.category_desc %>)</span> - 
+          <%= food.name %> x <%= food.serving %> serving(s)
+        </div>
+        <%= link_to 'Destroy',
+          user_food_path(params[:id], food), 
+          :class => "btn btn-default btn-xs", 
+          method: :delete, 
+          data: { confirm: 'Are you sure?' }
+        %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 <%= link_to "Calculate BMI", bmi_calc_index_path %>

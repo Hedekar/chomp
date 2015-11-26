@@ -1,24 +1,25 @@
 class SessionsController < ApplicationController
   skip_before_filter :authorize
+  skip_before_filter :check_profile
   
   def new
+    render layout: "simple"
   end
 
   def create
-    auth_user = User.find_by_email(params[:email])
-    if auth_user && auth_user.authenticate(params[:password])
-      session[:user_id] = auth_user.id
+    auth = Account.find_by_email(params[:email])
+    if auth && auth.authenticate(params[:password])
+      session[:account_id] = auth.id
       redirect_to root_path
     else
       flash.now[:error] = "Invalid email and password combination."
       params[:password] = ""
-      render "new"
+      render :new
     end
   end
 
   def destroy
-    session[:user_id] = nil
-    flash[:notice] = "You have successfully logged out"
+    session[:account_id] = nil
     redirect_to root_path
   end
 end

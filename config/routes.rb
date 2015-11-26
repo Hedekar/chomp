@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   
+  resources :accounts
+  resources :users do
+    resources :weights
+    resources :foods
+  end
+  resources :nutrients
+  resources :nutritions
+  
   get 'bmi_calc/index'
   
   resources :bmi_calc do
@@ -9,14 +17,6 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :nutrients
-  resources :foods
-  resources :weights
-
-  get 'welcome/index'
-  get 'profile/edit'
-
-
   controller :dashboard do
     get 'home' => :index
     get 'track' => :show
@@ -29,15 +29,6 @@ Rails.application.routes.draw do
     get 'logout' => :destroy
   end
 
-  resources :users do
-    resources :profile
-  end
-
-  resources :nutritions
-  resources :meals
-
-
-
   #controller :users do
   #  get 'edit_account' => :edit_account
   #  post 'edit_account' => :update_acccount
@@ -45,7 +36,7 @@ Rails.application.routes.draw do
   #  post 'edit_profile' => :update_profile
   #end
 
-  root 'welcome#index'
+  root 'dashboard#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

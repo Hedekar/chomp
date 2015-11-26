@@ -1,10 +1,11 @@
 class FoodsController < ApplicationController
+  before_filter :access_control
   before_action :set_food, only: [:show, :edit, :update, :destroy]
 
   # GET /foods
   # GET /foods.json
   def index
-    @foods = Food.where(:user_id => current_user.id)
+    @foods = Food.where(:user_id => params[:user_id])
   end
 
   # GET /foods/1
@@ -14,7 +15,8 @@ class FoodsController < ApplicationController
 
   # GET /foods/new
   def new
-    @food = Food.new
+    @user = User.find(params[:user_id])
+    #@food = Food.new
   end
 
   # GET /foods/1/edit
@@ -25,17 +27,19 @@ class FoodsController < ApplicationController
   # POST /foods.json
   def create
     
-    params[:food][:user_id]=current_user.id
+    @user = User.find(params[:user_id])
+    @food = @user.foods.new(food_params)
     
-    @food = Food.new(food_params)
+    #params[:food][:user_id]=current_user.id
+    #@food = Food.new(food_params)
     
     respond_to do |format|
       if @food.save
-        format.html { redirect_to @food, notice: 'Food was successfully created.' }
-        format.json { render :show, status: :created, location: @food }
+        format.html { redirect_to @user, notice: 'Food was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,7 +63,7 @@ class FoodsController < ApplicationController
   def destroy
     @food.destroy
     respond_to do |format|
-      format.html { redirect_to foods_url, notice: 'Food was successfully destroyed.' }
+      format.html { redirect_to :back, notice: 'Food was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,8 +74,17 @@ class FoodsController < ApplicationController
       @food = Food.find(params[:id])
     end
 
+    def access_control 
+      @user = User.find(params[:user_id])
+      unless current_account.id == @user.account_id
+        flash[:danger] = "You don't have access"
+        redirect_to users_path
+        return
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def food_params
-      params.require(:food).permit(:name, :date, :serving, :category, :user_id)
+      params.require(:food).permit(:name, :date, :serving, :category)
     end
 end

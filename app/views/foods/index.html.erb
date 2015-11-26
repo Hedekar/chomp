@@ -1,35 +1,29 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Foods</h1>
 
-<table>
+<table border="1" style="width:100%">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Serving</th>
-      <th>Category</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th style="padding:10px">Name</th>
+      <th style="padding:10px">Date</th>
+      <th style="padding:10px">Serving</th>
+      <th style="padding:10px">Category</th>
+      <th style="padding:10px">User</th>
+      <th style="padding:10px" colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @foods.each do |food| %>
       <tr>
-        <td><%= food.name %></td>
-        <td><%= food.date %></td>
-        <td><%= food.serving %></td>
-        <td><%= food.category %></td>
-        <td><%= food.user %></td>
-        <td><%= link_to 'Show', food %></td>
-        <td><%= link_to 'Edit', edit_food_path(food) %></td>
-        <td><%= link_to 'Destroy', food, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td style="padding:10px"><%= food.name %></td>
+        <td style="padding:10px"><%= food.date %></td>
+        <td style="padding:10px"><%= food.serving %></td>
+        <td style="padding:10px"><%= food.category %></td>
+        <td style="padding:10px"><%= food.user %></td>
+        <td style="padding:10px"><%= link_to 'Show', food %></td>
+        <td style="padding:10px"><%= link_to 'Edit', edit_user_food_path(params[:user_id], food) %></td>
+        <td style="padding:10px"><%= link_to 'Destroy', user_food_path(params[:user_id], food), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Food', new_food_path %>

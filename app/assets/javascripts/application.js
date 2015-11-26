@@ -19,6 +19,9 @@
 
 $(document).on('hidden.bs.modal', function(e) {
   $(e.target).removeData('bs.modal');
+  $(".modal").on("hidden.bs.modal", function() {
+    $(".modal-content").html("");
+  });
 });
 
 function nutritions_search_update_page(page)
@@ -39,16 +42,36 @@ function stylize_nutrition_window() {
   });
 }
 
+function submit_account_form(val) {
+  switch(val) {
+    case "new":
+    $("form.new_account").submit();
+    break;
+    
+    case "edit":
+    $("form.edit_account").submit();
+    break;
+  }
+}
+
 function submit_nutrition_form() {
   $("#nutrition_form").submit();
-  //$("#my-modal").modal('hide');
-  //setTimeout(function() {
-  //  update_profile_panel();
-  //}, 3000);
 }
 
 function submit_weight_form() {
   $("#new_weight").submit();
+}
+
+function submit_user_form(val) {
+  switch(val) {
+    case "new":
+    $("form.new_user").submit();
+    break;
+    
+    case "edit":
+    $("form.edit_user").submit();
+    break;
+  }
 }
 
 function update_profile_panel() {
