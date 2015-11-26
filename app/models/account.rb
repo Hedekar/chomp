@@ -8,4 +8,12 @@ class Account < ActiveRecord::Base
   def email=(val)
     write_attribute(:email, val.downcase)
   end
+  
+  def get_main_user
+    return User.where(:account_id => self.id, :is_main => 1).first
+  end
+  
+  def get_other_users
+    return User.where(:account_id => self.id, :is_main => 0).order("first_name ASC, last_name ASC")
+  end
 end

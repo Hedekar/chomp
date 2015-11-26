@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   def create
     params[:user][:account_id]=current_account.id
     
-    if main_user == nil
+    if current_account.get_main_user == nil
       params[:user][:is_main]=1
     else
       params[:user][:is_main]=0

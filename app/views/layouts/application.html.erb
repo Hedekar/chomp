@@ -58,38 +58,38 @@
         </div>
         
         <div class="col-lg-3">
-          <% if current_account %>
+          <% if current_account.id != nil && current_account.get_main_user != nil %>
             <div class="user_window">
               
               <div class="profile">
-                <div class="name">Welcome, <%= main_user.full_name %></div>
+                <div class="name">Welcome, <%= current_account.get_main_user.full_name %></div>
                 <div class="controls">
                   <%= link_to "Profile", current_account, class: "btn btn-default btn-xs" %>
                   <%= link_to "Logout", logout_path, class: "btn btn-default btn-xs" %>
                 </div>
               </div>
               
-              <% if main_user.id != nil %>
+              <% if current_account.get_main_user.id != nil %>
                 <div class="track_header">
                   Today's Summary
                 </div>
                 <div id="tracking_box" class="track_list">
                   <div class="track_item">
                     <div class="header">Total Calorie Intake:</div>
-                    <div class="details"><%= main_user.get_todays_calories %> kcal</div>
+                    <div class="details"><%= current_account.get_main_user.get_todays_calories %> kcal</div>
                   </div>
                   
                   <div class="track_item">
                     <div class="header">Current Weight:</div>
-                    <div class="details"><%= main_user.get_current_weight %></div>
+                    <div class="details"><%= current_account.get_main_user.get_current_weight %></div>
                   </div>
                   
-                  <% if todays_food_breakfast.any? %>
+                  <% if current_account.get_main_user.get_todays_food_breakfast.any? %>
                   <div class="track_item">
                     <div class="header">Breakfast:</div>
                     <div class="details">
                       <ul>
-                      <% todays_food_breakfast.each do |x| %>
+                      <% current_account.get_main_user.get_todays_food_breakfast.each do |x| %>
                         <li><%= x["name"] %></li>
                       <% end %>
                       </ul>
@@ -97,12 +97,12 @@
                   </div>
                   <% end %>
                   
-                  <% if todays_food_lunch.any? %>
+                  <% if current_account.get_main_user.get_todays_food_lunch.any? %>
                   <div class="track_item">
                     <div class="header">Lunch:</div>
                     <div class="details">
                       <ul>
-                        <% todays_food_lunch.each do |x| %>
+                        <% current_account.get_main_user.get_todays_food_lunch.each do |x| %>
                           <li><%= x["name"] %></li>
                         <% end %>
                       </ul>
@@ -110,12 +110,12 @@
                   </div>
                   <% end %>
                   
-                  <% if todays_food_dinner.any? %>
+                  <% if current_account.get_main_user.get_todays_food_dinner.any? %>
                   <div class="track_item">
                     <div class="header">Dinner:</div>
                     <div class="details">
                       <ul>
-                        <% todays_food_dinner.each do |x| %>
+                        <% current_account.get_main_user.get_todays_food_dinner.each do |x| %>
                           <li><%= x["name"] %></li>
                         <% end %>
                       </ul>
@@ -123,12 +123,12 @@
                   </div>
                   <% end %>
                   
-                  <% if todays_food_snack.any? %>
+                  <% if current_account.get_main_user.get_todays_food_snack.any? %>
                   <div class="track_item">
                     <div class="header">Snack:</div>
                     <div class="details">
                       <ul>
-                        <% todays_food_snack.each do |x| %>
+                        <% current_account.get_main_user.get_todays_food_snack.each do |x| %>
                           <li><%= x["name"] %></li>
                         <% end %>
                       </ul>
@@ -136,12 +136,12 @@
                   </div>
                   <% end %>
                   
-                  <% if todays_food_other.any? %>
+                  <% if current_account.get_main_user.get_todays_food_other.any? %>
                   <div class="track_item">
                     <div class="header">Other:</div>
                     <div class="details">
                       <ul>
-                        <% todays_food_other.each do |x| %>
+                        <% current_account.get_main_user.get_todays_food_other.each do |x| %>
                           <li><%= x["name"] %></li>
                         <% end %>
                       </ul>
@@ -151,27 +151,24 @@
                   
                   <div class="track_controls">
                     <%= link_to "History", 
-                      @main_user, 
+                      current_account.get_main_user, 
                       :class => "btn btn-default btn-xs", 
                       data: {toggle: "modal", target: "#my-modal" } %>
                     <%= link_to "Weight", 
-                      new_user_weight_path(main_user), 
+                      new_user_weight_path(current_account.get_main_user), 
                       :class => "btn btn-default btn-xs", 
                       data: {toggle: "modal", target: "#my-modal" } %>
-                    <%= link_to "Food", 
-                      nutritions_path, 
-                      :class => "btn btn-default btn-xs" %>
                   </div>
                 </div>
                 
-                <div class="track_header">
-                  Others
-                </div>
-                <div class="track_list">
-                  <% if other_users.any? %>
-                    <% other_users.each do |x| %>
+                <% if current_account.get_other_users.any? %>
+                  <div class="track_header">
+                    Others
+                  </div>
+                  <div class="track_list">
+                    <% current_account.get_other_users.each do |x| %>
                       <% 
-                        if x == other_users.last
+                        if x == current_account.get_other_users.last
                           c = " last"
                         else
                           c = ""
@@ -195,8 +192,8 @@
                         </div>
                       </div>
                     <% end %>
-                  <% end %>
-                </div>
+                  </div>
+                <% end %>
               <% end %>
               
               

@@ -1,25 +1,34 @@
 <h1>Calculate Your Body Mass Index</h1>
 
+<br><p style="font-size:160%">BMI Categories:</p><br>
+
+<p>Underweight: BMI < 18.5</p>
+<p>Normal weight: 18.5 =< BMI < 25<p>
+<p>Overweight: 25 =< BMI < 30</p>
+<p>Obesity: BMI >= 30</p>
+
+<%= link_to 'Back to Profile', current_user %>
+
 <br><br>
 
 <p style="font-size:160%">Metric</p>
 
-<%= form_tag(calculate_bmi_calc_index_path) do %>
+<%= form_tag(bmi_metric_bmi_calc_index_path) do %>
 
   <div class="input_item"> 
       Height(cm):</br> 
-      <%= text_field_tag "heightinput" %>
+      <%= number_field_tag "heightinput", nil, min: 1, required: true  %>
   </div>
   
   <div class="input_item"> 
       Weight(kg):</br> 
-      <%= text_field_tag "weightinput" %>
+      <%= number_field_tag "weightinput", nil, min: 1, required: true  %>
   </div>
   
   <div class="form_controls">
       <%= submit_tag 'Calculate' %>
   </div>
-
+  
 <% end %>
 
 <br>
@@ -28,7 +37,7 @@
 
 <% else %>
 
-  <p>The calculated body mass index is: </p><%= @result %>
+  <p>The calculated body mass index is: <ins><%= sprintf("%.1f" % @result) %></ins>.</p>
   
   <% if @result < 18.5 %>
     <p>You are currently underweight.</p>
@@ -49,21 +58,21 @@
 
 <p style="font-size:160%">Imperial</p>
 
-<%= form_tag(calc_imp_bmi_calc_index_path) do %>
+<%= form_tag(bmi_imp_bmi_calc_index_path) do %>
 
   <div class="input_item"> 
       Height(feet):</br> 
-      <%= text_field_tag "heightfeet" %>
+      <%= number_field_tag "heightfeet", nil, min: 1, required: true  %>
   </div>
   
   <div class="input_item"> 
       Height(inch):</br> 
-      <%= text_field_tag "heightinch" %>
+      <%= number_field_tag "heightinch", nil, min: 1, required: true  %>
   </div>
   
   <div class="input_item"> 
       Weight(lb):</br> 
-      <%= text_field_tag "weightlb" %>
+      <%= number_field_tag "weightlb", nil, min: 1, required: true  %>
   </div>
   
   <div class="form_controls">
@@ -78,7 +87,7 @@
 
 <% else %>
 
-<p>The calculated body mass index is: </p><%= @imp %>
+<p>The calculated body mass index is: <ins><%= sprintf("%.1f" % @imp) %></ins>.</p>
 
   <% if @imp < 18.5 %>
     <p>You are currently underweight.</p>
@@ -95,13 +104,3 @@
   
 <% end %>
 
-<br><br>
-
-<br><br>
-
-<p style="font-size:160%">BMI Categories:</p><br>
-
-<p>Underweight: BMI < 18.5</p>
-<p>Normal weight: 18.5 =< BMI < 25<p>
-<p>Overweight: 25 =< BMI < 30</p>
-<p>Obesity: BMI >= 30</p>

@@ -32,7 +32,8 @@ class AccountsController < ApplicationController
     respond_to do |format|
       if @account.save
         session[:account_id] = @account.id
-        format.html { redirect_to new_user_path }
+        @account.users.create(:is_main => 1, :gender => 3, :birth => "")
+        format.html { redirect_to root_path }
         format.json { render :show, status: :created, location: @account }
       else
         if @account.errors.any?
@@ -74,9 +75,9 @@ class AccountsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
-      @account = Account.find(current_account.id)
-      if main_user != nil
-        @main_user = main_user
+      @account = current_account
+      if current_account.get_main_user != nil
+        @main_user = current_account.get_main_user
       else
         @main_user = User.new
       end

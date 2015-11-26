@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
   
+  get 'calorie_calc/index'
+  
+  resources :calorie_calc do
+    collection do
+      post 'cal_metric'
+      post 'cal_imp'
+    end
+  end
+
   resources :accounts
   resources :users do
     resources :weights
@@ -12,8 +21,8 @@ Rails.application.routes.draw do
   
   resources :bmi_calc do
     collection do
-      post 'calculate'
-      post 'calc_imp'
+      post 'bmi_metric'
+      post 'bmi_imp'
     end
   end
   
