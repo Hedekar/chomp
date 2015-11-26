@@ -37,7 +37,7 @@
 
 <% else %>
 
-  <p>The calculated body mass index is: <ins><%= @result %></ins>.</p>
+  <p>The calculated body mass index is: <ins><%= sprintf("%.1f" % @result) %></ins>.</p>
   
   <% if @result < 18.5 %>
     <p>You are currently underweight.</p>
@@ -87,7 +87,7 @@
 
 <% else %>
 
-<p>The calculated body mass index is: <ins><%= @imp %></ins>.</p>
+<p>The calculated body mass index is: <ins><%= sprintf("%.1f" % @imp) %></ins>.</p>
 
   <% if @imp < 18.5 %>
     <p>You are currently underweight.</p>

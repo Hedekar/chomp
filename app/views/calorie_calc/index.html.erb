@@ -1,8 +1,13 @@
 <h1>Daily Calorie Intake Suggestion</h1>
 
-<br><p style="font-size:160%">Disclaimer:</p><br>
+<br><p style="font-size:160%">Disclaimer:</p>
 
-<%= link_to 'Back to Profile', current_user %>
+ <p>This calculator does not take into consideration any amount
+ of exercise that you may do as part of your daily routine.
+ The calculated value is merely a suggestion and does not guarantee
+ that you will hit your target weight in a given time frame.</p>
+ 
+<br><%= link_to 'Back to Profile', current_user %>
 
 <br><br>
 
@@ -50,8 +55,8 @@
       
     <% else %>
     
-    <p>The suggested daily calorie intake is +<ins><%= @result %></ins> calories of your current daily calorie intake.</p>
-    <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= @cal+@result %></ins>
+    <p>The suggested daily calorie intake is +<ins><%= sprintf("%.1f" % @result) %></ins> calories of your current daily calorie intake.</p>
+    <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= sprintf("%.1f" % (@cal+@result)) %></ins>
     calories per day over the next <ins><%= @days %></ins> days to hit your target weight of <ins><%= @targ_weight %></ins> kg.</p>
     
     <% end %>
@@ -65,8 +70,8 @@
       
     <% else %>
 
-      <p>The suggested daily calorie intake is -<ins><%= @result %></ins> calories of your current daily calorie intake.</p>
-      <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= @cal-@result %></ins>
+      <p>The suggested daily calorie intake is -<ins><%= sprintf("%.1f" % @result) %></ins> calories of your current daily calorie intake.</p>
+      <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= sprintf("%.1f" % (@cal-@result)) %></ins>
       calories per day over the next <ins><%= @days %></ins> days to hit your target weight of <ins><%= @targ_weight %></ins> kg.</p>
       
     <% end %>
@@ -121,8 +126,8 @@
       
     <% else %>
     
-    <p>The suggested daily calorie intake is +<ins><%= @res_imp %></ins> calories of your current daily calorie intake.</p>
-    <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= @cal+@res_imp %></ins>
+    <p>The suggested daily calorie intake is +<ins><%= sprintf("%.1f" % @res_imp) %></ins> calories of your current daily calorie intake.</p>
+    <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= sprintf("%.1f" % (@cal+@res_imp)) %></ins>
     calories per day over the next <ins><%= @days %></ins> days to hit your target weight of <ins><%= @targ_weight %></ins> lb.</p>
     
     <% end %>
@@ -136,8 +141,8 @@
       
     <% else %>
 
-      <p>The suggested daily calorie intake is -<ins><%= @res_imp %></ins> calories of your current daily calorie intake.</p>
-      <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= @cal-@res_imp %></ins>
+      <p>The suggested daily calorie intake is -<ins><%= sprintf("%.1f" % @res_imp) %></ins> calories of your current daily calorie intake.</p>
+      <p>You are currently eating <ins><%= @cal %></ins> calories per day, you are suggested to eat <ins><%= sprintf("%.1f" % (@cal-@res_imp)) %></ins>
       calories per day over the next <ins><%= @days %></ins> days to hit your target weight of <ins><%= @targ_weight %></ins> lb.</p>
       
     <% end %>
