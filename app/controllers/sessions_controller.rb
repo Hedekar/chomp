@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     else
       flash.now[:error] = "Invalid email and password combination."
       params[:password] = ""
-      render :new
+      render :new, layout: "simple"
     end
   end
 
