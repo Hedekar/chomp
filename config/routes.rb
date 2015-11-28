@@ -1,18 +1,35 @@
 Rails.application.routes.draw do
+  
+  get 'calorie_calc/index'
+  
+  resources :calorie_calc do
+    collection do
+      post 'cal_metric'
+      post 'cal_imp'
+    end
+  end
 
+  resources :accounts
+  resources :users do
+    resources :weights
+    resources :foods
+  end
   resources :nutrients
-  resources :foods
-  resources :weights
-
-  get 'welcome/index'
-  get 'profile/edit'
-
-  get 'graph/index'
-  get 'graph/data', :defaults => { :format => 'json' }
-
+  resources :nutritions
+  
+  get 'bmi_calc/index'
+  
+  resources :bmi_calc do
+    collection do
+      post 'bmi_metric'
+      post 'bmi_imp'
+    end
+  end
+  
   controller :dashboard do
     get 'home' => :index
     get 'track' => :show
+    get 'data', :defaults => { :format => 'json' }
   end
 
   controller :sessions do
@@ -21,15 +38,6 @@ Rails.application.routes.draw do
     get 'logout' => :destroy
   end
 
-  resources :users do
-    resources :profile
-  end
-
-  resources :nutritions
-  resources :meals
-
-
-
   #controller :users do
   #  get 'edit_account' => :edit_account
   #  post 'edit_account' => :update_acccount
@@ -37,7 +45,7 @@ Rails.application.routes.draw do
   #  post 'edit_profile' => :update_profile
   #end
 
-  root 'welcome#index'
+  root 'dashboard#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

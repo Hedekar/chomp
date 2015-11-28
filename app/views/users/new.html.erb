@@ -1,2 +1,9 @@
-<h1>Register</h1>
-<%= render 'form_account' %>
+<% content_for :title do %>
+  Add New User
+<% end %>
+
+<%= render 'form' %>
+
+<% content_for :footer do %>
+  <button class="btn btn-primary" onclick="submit_user_form('new')">Submit</button>
+<% end %>

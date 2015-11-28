@@ -1,6 +1,6 @@
 class NutritionsController < ApplicationController
   def index
-    @search_term = params[:keyword]
+    @search_term = params[:keyword] == nil ? "" : params[:keyword]
     @search_page = params[:page].to_i
     @nutritions = Nutrition.search(@search_term, @search_page)
   end
@@ -19,7 +19,7 @@ class NutritionsController < ApplicationController
     date = year + ((month.length < 2) ? "0" + month : month) + ((day.length < 2) ? "0" + day : day )
     
     food = Food.new(params.permit(:name, :serving, :category))
-    food.user_id = current_user.id
+    food.user_id = current_account.get_main_user.id
     food.date = date
     if food.save
       n = Nutrition.get_detail(params[:ndbno])

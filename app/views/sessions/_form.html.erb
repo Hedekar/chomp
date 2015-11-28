@@ -1,0 +1,17 @@
+<%= form_tag do %>
+  <div class="well">
+    <div class="input_item">
+      Email:<br />
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+     
+    <div class="input_item">
+      Password:<br />
+      <%= password_field_tag :password, params[:password] %>
+    </div>
+     
+    <div class="form_controls">
+      <%= submit_tag "Login" %>
+    </div>
+  </div>
+<% end %>

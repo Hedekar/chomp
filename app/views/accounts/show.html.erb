@@ -1,0 +1,105 @@
+<div class="profile_container">
+  <div class="list_header">
+    Account
+  </div>
+  <div class="list with_header">
+    <div class="item last">
+      <div class="desc">
+        <span class="data">
+          Email:
+        </span><br />
+        <%= @account.email %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if current_account.get_main_user == nil %>
+  <div class="list_header">
+    Profile
+  </div>
+  <div class="error_list with_header">
+    <div class="item">
+      Please proceed with setting up your main profile<br /><br />
+      <%= link_to 'Add', new_user_path, class: "btn btn-default", data: {toggle: "modal", target: "#my-modal" } %>
+    </div>
+  </div>
+<% else %>
+  <div class="profile_container">
+    <div class="list_header">
+      Main Profile
+      <%= link_to 'Edit', edit_user_path(@main_user), class: "btn btn-default btn-xs", data: {toggle: "modal", target: "#my-modal" } %>
+    </div>
+    <div class="list with_header">
+      <div class="item">
+        <div class="desc">
+          <span class="data">
+            Name:
+          </span><br />
+          <%= @main_user.full_name %>
+        </div>
+      </div>
+      <div class="item">
+        <div class="desc">
+          <span class="data">
+            Gender:
+          </span><br />
+          <%= @main_user.gender_desc %>
+        </div>
+      </div>
+      <div class="item">
+        <div class="desc">
+          <span class="data">
+            Birth Date:
+          </span><br />
+          <%= @main_user.birth %>
+        </div>
+      </div>
+      <div class="item last">
+        <div class="desc">
+          <span class="data">
+            Age:
+          </span><br />
+          <%= @main_user.age %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="profile_container">
+    <div class="list_header">
+      Others
+      <%= link_to 'Add', new_user_path, class: "btn btn-default btn-xs", data: {toggle: "modal", target: "#my-modal" } %>
+    </div>
+    <% if @users.empty? %>
+      <div class="error_list with_header">
+        <div class="item">
+          You do not have any user record
+        </div>
+      </div>
+    <% else %>
+      <div class="list with_header">
+        <% @users.each do |user| %>
+          <% 
+            if user == @users.last
+              c = " last"
+            else
+              c = ""
+            end
+          %>
+          <div class="item<%= c %>">
+            <div class="desc">
+              <%= user.full_name %>
+              <span>
+                (<%= user.gender_desc %>, <%= user.age %>)
+              </span>
+            </div>
+            <%= link_to 'Destroy', user, method: :delete, :class => "btn btn-default btn-xs", data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Edit', edit_user_path(user), :class => "btn btn-default btn-xs", data: {toggle: "modal", target: "#my-modal" } %>
+          </div>
+        <% end %>
+        
+      </div>
+    <% end %>
+  </div>
+<% end %>

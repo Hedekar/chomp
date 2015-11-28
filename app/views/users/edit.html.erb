@@ -1,2 +1,9 @@
-<h1>Update Profile</h1>
-<%= render 'form_profile' %>
+<% content_for :title do %>
+  Update User
+<% end %>
+
+<%= render 'form' %>
+
+<% content_for :footer do %>
+  <button class="btn btn-primary" onclick="submit_user_form('edit')">Submit</button>
+<% end %>

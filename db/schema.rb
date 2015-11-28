@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151109044426) do
+ActiveRecord::Schema.define(version: 20151125062729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "foods", force: :cascade do |t|
     t.string   "name"
@@ -27,6 +34,17 @@ ActiveRecord::Schema.define(version: 20151109044426) do
   end
 
   add_index "foods", ["user_id"], name: "index_foods_on_user_id", using: :btree
+
+  create_table "meals", force: :cascade do |t|
+    t.string   "title"
+    t.date     "date"
+    t.string   "group"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "meals", ["user_id"], name: "index_meals_on_user_id", using: :btree
 
   create_table "nutrients", force: :cascade do |t|
     t.integer  "ref_id"
@@ -41,16 +59,32 @@ ActiveRecord::Schema.define(version: 20151109044426) do
 
   add_index "nutrients", ["food_id"], name: "index_nutrients_on_food_id", using: :btree
 
-  create_table "users", force: :cascade do |t|
-    t.string   "email"
-    t.string   "password_digest"
+  create_table "profiles", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "gender"
     t.date     "birth"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "gender"
+    t.date     "birth"
+    t.integer  "account_id"
+    t.integer  "is_main",         default: 0
+  end
+
+  add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
 
   create_table "weights", force: :cascade do |t|
     t.integer  "Weight"
@@ -70,6 +104,8 @@ ActiveRecord::Schema.define(version: 20151109044426) do
   end
 
   add_foreign_key "foods", "users"
+  add_foreign_key "meals", "users"
   add_foreign_key "nutrients", "foods"
+  add_foreign_key "profiles", "users"
   add_foreign_key "weights", "users"
 end

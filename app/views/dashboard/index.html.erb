@@ -9,4 +9,20 @@
 <div class="graphs">
   <a href="graph/index">Click here to graph your recent calories</a>
   <svg id="graph"></svg>
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $.ajax({
+           type: "GET",
+           contentType: "application/json; charset=utf-8",
+           url: 'data',
+           dataType: 'json',
+           success: function (data) {
+               draw(data);
+           },
+           error: function (result) {
+               error();
+           }
+       });
+    });
+  </script>
 </div>

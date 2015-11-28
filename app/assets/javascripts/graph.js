@@ -1,15 +1,5 @@
-$.ajax({
-           type: "GET",
-           contentType: "application/json; charset=utf-8",
-           url: 'data',
-           dataType: 'json',
-           success: function (data) {
-               draw(data);
-           },
-           error: function (result) {
-               error();
-           }
-       });
+
+
 
 function draw(data) {
     var color = d3.scale.category20b();
