@@ -12,7 +12,7 @@ class Nutrition
     page_number = (page_number < 1) ? 1 : page_number
     num_items = 25
     offset = (page_number - 1) * num_items
-    api_response = HTTParty.get "http://api.nal.usda.gov/ndb/search/?format=json&q=#{CGI.escape keyword}&sort=n&max=#{num_items}&offset=#{offset}&api_key=#{@@api_key}"
+    api_response = HTTParty.get "http://api.nal.usda.gov/ndb/search/?format=json&q=#{CGI.escape keyword}&sort=r&max=#{num_items}&offset=#{offset}&api_key=#{@@api_key}"
     data = JSON.parse(api_response.body)
     
     is_error = data["errors"] != nil

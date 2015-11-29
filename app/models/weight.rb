@@ -13,7 +13,7 @@ class Weight < ActiveRecord::Base
   end
   
   belongs_to :user
-  default_scope -> { order(created_at: :desc) }
+  default_scope -> { order(Date: :desc) }
   validates :user_id, presence: true
   validates :Weight, numericality: {greater_than_or_equal_to: 0}
   validates_with WeightUnit

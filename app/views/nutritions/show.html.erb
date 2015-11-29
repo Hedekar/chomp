@@ -5,47 +5,74 @@
   <% end %>
   
   <div class="nutrition_details">
+    
+    <%
+      i = 0
+      total = @nutrition["report"]["food"]["nutrients"].size
+    %>
     <% @nutrition["report"]["food"]["nutrients"].each do |x| %>
-      <div class="item">
+      <%
+        c = (i%2==0) ? " left" : " right"
+        c = (i==0||i==1) ? "#{c} first" : c
+        c = (i==total-1 || (i%2==0 && i==total-2)) ? "#{c} last" : c
+        i = i + 1
+      %>
+      <div class="item<%= c %>">
         <span class="desc"><%= x["name"] %></span>
         <span class="unit"><%= x["value"] %> <%= x["unit"] %></span>
       </div>
     <% end %>
-    
+  </div>
+  
+  <div class="nutrition_form">
     <%= form_for :food, url: {controller: "nutritions"}, html: {id: "nutrition_form"}, method: "post" do %>
       <%= hidden_field_tag(:ndbno, params[:id]) %>
       <%= hidden_field_tag(:name, @nutrition["report"]["food"]["name"]) %>
-      <div class="input_list">
-        <div class="input_item">
-          <div class="input_label">Date </div>
-          <div class="input_field">
+      
+      <div class="column_01">
+        <div class="field">
+          Date: <br />
           <%= date_select :date, "d", start_year: Date.today.year-100, end_year: Date.today.year, selected: @now %>
-          </div>
         </div>
-        <div class="input_item">
-          <div class="input_label">How many servings? </div>
-          <div class="input_field">
-          <%= number_field_tag :serving, 1 %> 
-          </div>
-        </div>
-        <div class="input_item">
-          <div class="input_label">Category </div>
-          <div class="input_field">
+        
+        <div class="field">
+          Category: <br />
           <%= select_tag(:category, options_for_select([['Breakfast',1],['Lunch',2],['Dinner',3],['Snack',4],['Others',5]])) %>
-          </div>
+        </div> 
+      </div>
+      
+      <div class="column_02">
+        <div class="title">How many Servings</div>
+        
+        <div class="field">
+          <%= @main_user.full_name %> 
+          (<%= @main_user.gender_desc %>, <%= @main_user.age %>)<br />
+          <%= number_field_tag "servings[#{@main_user.id}]", 1 %>
         </div>
+        
+        <% @other_users.each do |user| %>
+          
+          <div class="field">
+            <%= user.full_name %>
+            (<%= user.gender_desc %>, <%= user.age %>)<br />
+            <%= number_field_tag "servings[#{user.id}]", 1 %> 
+          </div>
+          
+        <% end %>
+        
       </div>
     <% end %>
   </div>
+    
   
   <% content_for :footer do %>
     <button class="btn btn-primary" onclick="submit_nutrition_form()">Add</button>
   <% end %>
   
   <script type="text/javascript">
-    $(document).ready(function(){
-      stylize_nutrition_window();
-    });
+  $(document).ready(function(){
+    //stylize_nutrition_window();
+  });
   </script>
   
 <% end %>
