@@ -1,0 +1,531 @@
+﻿\documentclass[a4paper,12pt]{article}
+\usepackage{color,soul}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[titletoc,title]{appendix}
+\usepackage{wrapfig}
+\begin{document}
+\title{Chomp
+\subsubsection*{Requirements and Specification Document -- Group 6}\subsubsection*{Version 1.3}
+}\maketitle
+\hl{\item\textbf{Note: Iteration 3 specific information is highlighted.}}\\
+
+\textbf{The url for our website is: \url{http://cmpt276-chomp.herokuapp.com}}\\
+
+
+\renewcommand{\abstractname}{Project Abstract}
+\begin{abstract}
+
+Chomp is a web application that tracks what a person, group, or family eats, and gives nutritional advice, and other meal and dietary statistical analysis.  Chomp provides a more digestible understanding of how our food affects us beyond a simple calorie counter.  By leveraging multiple informational APIs, a wealth of data can be generated from simple meal entries.  Customers use Chomp to gauge their daily, weekly, monthly, and quarterly progress toward their personal goals, and choose Chomp as their preferred tool because of its variety and wealth of information packed into a convenient and understandable form. The anticipated revenue stream for Chomp will be in-app addvertisements that target a given user as well as customer eating habit intelligence that can be sold to firms.\\
+\\
+Our github location is \url{http://github.com/hedekar/chomp} and the most recent version of this document is available there.
+\end{abstract}
+\newpage
+\tableofcontents
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Customers}
+\subsection{Weight Loss}
+This customer uses Chomp to keep a daily count of their calories and specific nutritional information to assist them in losing weight.  See \textbf{Appendix A.1} for the user persona of Boris Chetznekov for further info.
+\subsection{Family Nutrition}
+This customer uses Chomp to track how nutritious her family meals are and what deficiencies in the diet may need to be addressed.  She is also very concerned with meal cost.  See \textbf{Appendix A.2} for the user persona of Susan Montgomery for further info.
+\subsection{Body Builder}
+This customer uses Chomp to monitor his body's nutrition levels as he prepares for body building competitions.  He lives with two roommates who also work out, but not to the same level of competitiveness.  They all share groceries.  See \textbf{Appendix A.3} for the user persona of Chet Reist for further info.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Competitive Analysis}
+Many other meal-tracking services already exist.  Some have multiple million downloads and users.  The majority of these however are very specific in scope, with only calories being counted or with a focus on reporting all the nutritional numbers at once.  The large majority of these applications are targeting weight loss customers but not other users.\\
+\\
+Both web applications and mobile applications have been developed in this field.  Some specific competitors include: \begin{list}{•}{•}
+\item \textbf{\href{http://www.noom.com}{Noom Coach -- noom.com} -- }A semi-free app that counts calories eaten and calories burned.  It then calculates and tracks weight of the user.  Includes 'coach' messages in a personalized manner.  The paid version allows for community sharing of progress and chatting amongst similar-goaled users as well as meal suggestions.  10-50million android downloads, 4.3 rating from 160,000+ reviews.  Its strengths are the personal coaching aspects and its very simple interface.
+\item \textbf{\href{http://www.myfitnesspal.com}{MyFitnessPal -- myfitnesspal.com} -- }A full-featured free application and web app sponsored by UnderArmour.  Multiple nutrition reports are available for a user, though it is centred on calories, including a very complete meal item search list along with workout habits and daily activity settings.  This application is most closely related to our desired toolset, however the overall interface is very cumbersome to use on a daily basis.10-50million android downloads, 4.6 rating from 1.1milllion+ reviews.  Its strengths are the comprehensiveness of the information it gives while the user interface and the lack of group features are its downfalls.
+\item \textbf{\href{http://www.lifesum.com}{Lifesum -- lifesum.com} -- }A semi-free app that heavily promotes the gold/paid upgrade.  Lifesum focuses primarily on meal suggestions with a substantial number of possible diet choices.  Meal suggestions come with full cooking instructions and basic (free) or complete (gold) nutritional information.  The recipe api used is from Recipies+ and their logo is used in the process.  The interface is very clean but with somewhat hidden and undiscoverable functionalities.  1-5million android downloads, 4.2 rating from 45,000 reviews.  Its strengths are the visually appealing interface and good meal suggestions, while its weaknesses include a difficult to understand interface and an incomplete feature set unless the upgrade is purchased.
+\item \textbf{\href{http://www.fatsecret.com}{FatSecret -- fatsecret.com} -- }A very sleek and easy to use free meal and exercise diary.  The interface is extremely easy to use on a daily basis, includes weight tracking, a barcode scanner, and a community feed.  It is one of the few apps that editing mistake entries is immediately obvious, and readily gives nutritional breakdown for each food item.  10-50million android installs, 4.3 rating from 185,000+ reviews.  Its strengths are the ease of use and wealth of information, while its downfalls are a lack of summary reporting and a cold aesthetic.
+\item \textbf{\href{http://www.myfooddiary.com}{My Food Diary -- myfooddiary.com} -- }A paid subscription website that charges \$9 per month for meal and excercise tracking.  It relies heavily on mainstream media advertisements for its customer base.  Includes a detailed body measures in its reports where a person can track waist, shoulders, etc... as well as nutritional breakdowns of a person's diet and any given food (fiber, iron, etc...).  There are customizable chart reporting and community features. The interface does look slightly clunky with poor web redered fonts but an update sneak peak via twitter shows a nicer interface.  User data is not known for this application, but LinkedIn lists them as having 1-10 employees.
+\end{list}
+It should be noted that despite heavy market saturation, the revenue stream will still exist for any application that can garner a reliable or substantial user base.  A large number of regular users is our target fiscal goal.\\
+Furthermore, although many of these applications have strong features, none have the entire package of usability and full time-domain reporting.  None of the apps we reviewed featured a cost of meal tracker.  There is a space for Chomp in this market.
+\section{Velocity}
+\hl{\textbf{Iteration 3 (allocation of story points):}\\
+Add sub-user - 3\\
+Bmi calculation: 2\\
+Calorie intake suggestions: 2\\
+Update login UI: 1\\
+Display Reports: 1\\
+Track food for sub-users: 1\\
+Track weight for sub-users: 1\\
+Update register U.I: 1\\
+Graphing nutritional data: 3\\
+U.I side-panel refactoring: 1\\
+U.I profile page refactoring : 1\\
+\\
+The estimated amount of user stories to be completed at the end of iteration 3 was intended to be greater than the current amount. But due to time constraints certain user stories had to be excluded. This being considered, the velocity of iteration 3 was still greater than iteration 1 & 2, as expected.\\
+\\
+Iteration 3:\\
+Story Points: 20 pts\\            Velocity : 6.66 pts/week\\
+\\
+Iteration 2:\\
+Story Points: 12 pts\\ 	      Velocity : 6 pts/week\\
+\\
+Iteration 1:\\
+Story Points: 8 pts\\ 	      Velocity :  4 pts/week\\
+\\
+Iteration 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{User Stories}
+%%%%%%%%% to include in each story: Name/Description, Actors/Personas, Precondition/trigger, Actions/Post Condition, Acceptance Criteria, Tests
+\subsection{User Accounts}
+\textbf{Personas involved:} All\\
+\\
+\textbf{Description:} These stories are all united under the epic of editing and using both new and existing user accounts.  New users must first complete the Registration story.  Returning users must first complete the Login story.  After these stories, users may then complete the Account Setup and Logout stories.
+\subsubsection{Registration}
+\textbf{Precondition:} An unrecognized or not-logged in user visits our front page.\\
+\\
+\textbf{Actions:} A user is greeted with an interface requesting to register. Options for both Google and Facebook account linkage (via their account APIs) will be presented as well as a manual entry field for e-mail and password.request first name, last name, username, and e-mail. This will be followed up by sending the user's e-mail and password.\\
+\\
+Manual entry process will request first name, last name, username, and e-mail. This will be followed up by sending the user's e-mail a confirmation message in which a unique activation link will be sent. The process will end at a page instructing users to look for their e-mail link that will allow them to finish setting up their account.\\
+\\
+After registration completion, the system will send the user directly to the Account Setup stage.\\
+\\
+\textbf{Test/Postcondition:} A new account should be attempted to be created via Google, Facebook, as well as manually and the database should register all of the user's submitted information.  To check, developers can access the database directly to see the addition.\\
+\\
+\textbf{Test Cases include:}
+\begin{list}{•}{•}
+\item \textbf{Base case: }Once email and password is entered. The user should be sent to the update profile user story.
+\item \textbf{Case 1: }A password must be confirmed by entering it a second time. If the passwords not match an error should be thrown.
+\item \textbf{Case 2: }If an invalid email address is entered, an error should be thrown.
+\end{list}
+
+\subsubsection{Account Setup}
+\textbf{Precondition:} Either the user's account has freshly been registered, or they have clicked on the 'Account Settings' button of their user profile.\\
+\\
+\textbf{Actions:} If the account is already setup, the dialogue will present the setup items as an editable listing rather than sequential prompts.  A dialogue will ask the user about the following items\\
+\\
+\begin{list}{•}{•}
+\item First Name
+\item Last Name
+\item Birth-date (of primary user and each non-Chomp user)
+\item Gender
+\end{list}
+Once all of this information is submitted, the user's account will be updated and the desired statistics will take priority in the nutrition and value tracking interface.  The user will see the saved account settings filled out with the option to re-edit them or to return to the home screen.\\
+\\
+\textbf{Test/Postcondition:} To confirm that the information was saved to the user's account the simplest method is to check the database entry manually.  Once the entire user interface has be implemented, the changes of this process should be visible immediately on the user's homescreen.
+\subsubsection{Login}
+\textbf{Precondition:} A registered user is returning to the site without a login cookie in their browser.\\
+\\
+\textbf{Actions:} At the centre of the screen the both username or e-mail field and password field will display for the user.  Once the fields are filled out, the user clicks the Login button.  If any error occurs, the user is notified of the problem (in a semi-specific manner that helps users without assisting intrusion attempts).  If no error occurs the user is taken to their Chomp homepage.\\
+\\
+If an unregistered username or e-mail is entered, the registration process should begin for the user with a notice that the e-mail does not seem to be registered yet.\\
+\\
+\textbf{Test Cases include:}
+\begin{list}{•}{•}
+
+\item \textbf{Case 1-a:}An unregistered e-mail should be tried, at which time the user should be alerted with an error message. The system should stay on the same page with previously filled out email intact, but password should be wiped clean.
+
+\item \textbf{Case 1-b: }Non-email format is be entered with any password combination, at which time the user should be alerted with an error message same as Case 1-a. The system should stay on the same page with previously filled out email intact, but password should be wiped clean.}
+
+\item \textbf{Case 2: }A registered email and incorrect password should be entered, at which time an error message should appear (the message should be same as the invalid e-mail error message). The system should stay on same page with previously filled out email intact, but password should be wiped clean.}
+
+\item \textbf{Case 3-a: }A registered email and correct password should be entered, at which time the system should authenticate the user and keep it in a session. The system should redirect user to home page (page that is restricted to authenticated users only).
+
+\item \textbf{Case 3-b: }User should be able to login to system with email address with different capitalization pattern.
+\end{list}
+\subsubsection{Logout}
+\textbf{Precondition:}All users that are logged into an existing account.\\
+\\
+\textbf{Test Cases include: }
+\begin{list}{•}{•}
+\item \textbf{Base case: }Follow the logout steps. The login page should be reached. Then attempt to visit a particular page of the user's profile. This test should return an error.
+\end{list}
+\textbf{Actions:} By hovering over the user's name in the top-right corner of the screen a drop down menu will appear that includes the logout button.  The user then clicks this button and is greeted with the login screen.\\
+
+\subsubsection{Account Adjustment}
+\textbf{Precondition:} The user has on the 'Account Settings' button of their user profile.\\
+\\
+\textbf{Action/Postcondition:} The setup items will be presented as an editable listing of:
+\begin{list}{•}{•}
+\item Birth
+\item Gender
+\item First Name
+\item Last Name
+\end{list}
+\\
+Once all of this information is submitted, the user's account will be updated and the desired statistics will take priority in the nutrition and value tracking interface. The user will see the saved account settings filled out with the option to re-edit them or to return to the home screen.\\
+\subsection{Tracking}
+
+\subsubsection{Weight}
+\textbf{Manage Weight}\\
+\\
+\textbf{Description:} Allows a user to instantiate a new weight. If a weight has already been entered, allow the user to manage their weight.\\
+\\
+\textbf{Actors:} All registered users\\
+\\
+\textbf{Precondition:} A user is on the home page\\
+\\
+\textbf{Actions:} The user clicks on “track” where they update the following:\\
+\\
+Weight (integer greater than 0)\\
+\\
+Units (kg or lb)\\
+\\
+Date (year/month/day)\\
+\\
+The user then clicks on “Update Weight”\\
+\\
+\textbf{Post condition:} The weight should be successfully updated and the message “Weight was successfully updated.” is displayed (assuming the inputs are valid). The user is given the option to edit the weight or go back to the previous page.\\
+\\
+\textbf{Acceptance Tests:}\\
+\\
+\textbf{Input:}\\ 
+\\
+  1) An integer is inputted to represent the user's weight\\
+  2) A standard measurement for weight\\
+\\
+  \textbf{Tests:}\\
+\\
+  1) Enter a non-integer\\
+  2) Enter a negative integer\\
+  3) Enter an invalid measurement of weight\\
+\\
+  \textbf{Output:}\\
+\\
+  1)Throw an error message (Invalid format)\\
+\\
+\textbf{Iteration: 2}\\
+
+
+\subsubsection{Search Food}
+\textbf{Description:}  Allows the user to use NDB API to find the nutritional value of the food they ate.\\
+\\
+\textbf{Actors:} All registered users\\
+\\
+\textbf{Precondition:} A user is on the home page\\
+\\
+\textbf{Actions:} The user clicks on the text box "what did you eat today"  where they can search the NDB database for the given food item. Once user has entered a food name and pressed "search", system should redirect user to food list page. At the page, user can modify the search terms to get more precise item, or change criteria all together.\\
+\\
+\textbf{Post condition:} The database will list all the possible instances of the entered food item.\\
+\\
+\textbf{Acceptance Tests:}\\
+\textbf{Input:}
+1) A string of characters is entered representing the type of food the user has eaten.\\
+\\
+\textbf{Tests:}\\
+1) Enter a non- existent word\\
+2) Enter a series of integers\\
+3) Enter food item containing commas and spaces\\
+\\
+\textbf{Output:}\\
+\\
+1) Search list should display no items, and an error message indicating there are no foods found.\\
+2) The integer should be considered as a food, where most likely there won't be a matching food item. This should behave the same as the Test case 1\\
+3) System should submit keyword to NDB API "as is", but should not throw URI error\\
+\\
+\textbf{Iteration: 2}
+\subsubsection{Display nutritional value}
+\textbf{Description:} Displays the nutritional value if the food the user has searched from the NDB API.\\
+\\
+\textbf{Actors:} All registered users\\
+\\
+\textbf{Precondition:} A user is search food list.(where they have inputted a valid food item.\\
+\\
+\textbf{Actions:} The user clicks on the control next to the listed food item. (at this moment the control is labeled add)\\
+\\
+\textbf{Post condition:} The database will provide the user with nutritional values for these food items.\\
+\\
+\textbf{Iteration: 2}\\
+\\
+\subsubsection{Add Food To Record}
+\textbf{Description:} The user can choose to add  a particular food item that they found on the NDB database (using API) to their daily food record.\\
+\\
+\textbf{Actors:} All registered users\\
+\\
+\textbf{Precondition:} A user has selected a food item from the list provided by the NDB API. (This food item will be from the one that was entered by the user in the search food user story)\\
+\\
+\textbf{Actions:} The user can modify the date at which the food was consumed. They also add the servings of the food that was consumed. Finally the user can either choose to add the above specifications to their profile record, or they can cancel the whole process.\\
+\\
+\textbf{Post condition:} The user's record will be updated with the nutritional values from the foods that were just submitted, and the user can view listing of today's consumed foods at dashboard.\\
+\\
+\textbf{Acceptance Tests:}\\
+\\
+\textbf{Input:}\\
+\\
+1) A positive real number is inputted to represent the serving.\\
+\\
+\textbf{Tests:}\\
+\\
+1) Enter a negative real number for serving size\\
+\\
+\textbf{Output:}\\
+\\
+1) Throw an error message (Invalid format)\\
+\\
+Iteration 2 
+
+\subsubsection{Calculate BMI (metric or imperial)}
+\hl{
+    \textbf{Description:} Calculates BMI based on inputs\\
+    \\
+    \textbf{Actors:} All registered users\\
+    \\
+    \textbf{Precondition:} A user is on the home page.\\
+    \\
+    \textbf{Actions:} The user inputs the following:\\
+    \\
+    Height (cm or feet/inches) (integer greater than 1)\\
+    \\
+    Weight (kg or lb) (integer greater than 1)\\
+    \\
+    The user then clicks on “Calculate”\\
+    \\
+    \textbf{Postcondition:} The BMI should be successfully calculated and will be displayed as well as telling the user which BMI category they fall in.\\
+    \\
+    \textbf{Test Cases:}\\
+    
+    1) User leaves any input field blank or inputs a non-integer.
+    
+    Error: “Please enter a number.”\\
+
+    2) User inputs a negative integer.
+    
+    Error: “Please select a value that is no less than 1.”\\
+    \\
+    iteration 3
+}
+\\
+
+\subsubsection{Calculate Daily Calorie Intake (metric or imperial)}
+\hl{
+    \textbf{Description:} Calculates the suggested daily amount of calories to consume to hit a target weight in a given time frame based on inputs.\\
+    \\
+    \textbf{Actors:} All registered users.\\
+    \\
+    \textbf{Precondition:} A user is on the home page.\\
+    \\
+    \textbf{Actions:} The user clicks on the "daily calorie intake suggestion" button.The user then inputs the following:\\
+    \\
+    Current Calorie Intake (cal) (integer greater than 1)
+    Current Weight (kg or lb) (integer greater than 1)
+    Target Weight (kg or lb) (integer greater than 1)
+    Number of Days (integer greater than 1)\\
+    \\
+    The user then clicks on “Calculate”\\
+    \\
+    \textbf{Postcondition:} The suggested daily calorie intake should be successfully calculated and will be displayed:\\
+    \\
+    Depending on your inputs (extreme or unrealistic), the following statements may be displayed instead:\\
+    \\
+    "That goal is unrealistic. Either your current calorie intake is not high enough to support weight loss or you are trying to lose too much weight in too short a time."
+    \\
+    "That goal is unrealistic. You are trying to gain too much weight in too short of a  time."\\
+    \\
+    \textbf{Test Cases:}\\
+    
+    Case 1: User leaves any input field blank or inputs a non-integer.
+    
+    Error: “Please enter a number.”\\
+    
+    Case 2: User inputs a negative integer.
+    
+    Error: “Please select a value that is no less than 1.”\\
+    \\
+    Iteration: 3
+}
+
+\subsubsection{Display Reports}
+\hl{
+    \textbf{Description:}The user should be able to view history of all the calorie intakes and weights from the past thirty days in one window.\\
+    \\
+    \textbf{Actors:} All registered users\\
+    \\
+    \textbf{Precondition:} The user should be logged in. A button labeled history should be present for the user and each sub user on the side panel.\\
+    \\
+    \textbf{Actions:} The user clicks the history button. A pop up window will appear containing a dated list of all the weights and consumed foods in the past thirty days. Also the user's name, gender, and age will be displayed at the top of the window.\\
+    \\
+    Iteration: 3
+}
+
+\subsubsection{History Maintenence}
+\hl{
+    \textbf{Description:} The user should be able to delete weights and consumed foods from history window.\\
+    \\
+    \textbf{Actors:} All registered users\\
+    \\
+    \textbf{Precondition:} The user is on the history pop up window with the items available.\\
+    \\
+    \textbf{Actions:} The user clicks the destroy button next to desired weight or consumed food.\\
+    \\
+    \textbf{Post condition:} The chosen weight or consumed food will be deleted.\\
+    \\
+    Iteration: 3
+}
+
+\subsubsection{Add sub users}
+\hl{
+    \textbf{Description:} A user should be able to add sub users to their account, in order to track more than one person on a single account.\\
+    \\
+    \textbf{Actors:} All registered users\\
+    \\
+    \textbf{Precondition:} The user is on the profile page.\\
+    \\
+    \textbf{Actions:} The user clicks the add button under the "others" section. System should open a pop up window containing a form where the user can add a sub user to their account, and can specify their name, age and gender.\\
+    \\
+    \textbf{Post condition:} A track-able sub user will be added to the user's account.  The pop up window will be closed.\\
+    \\
+    Iteration: 3
+}
+
+\subsubsection{Track Food For Sub Users}
+\hl{
+    \textbf{Description:} A user should be able to track the consumed foods for sub users.\\
+    \\
+    \textbf{Actors:} All registered users\\
+    \\
+    \textbf{Precondition:} The user has searched a food item and has clicked on the add button to display nutrient details.\\
+    \\
+    \textbf{Actions:} The system should display all users with their own input boxes for serving sizes. The user presses the add button and the changes are submitted.\\
+    \\
+    \textbf{Post condition:} Foods and nutrient values are added to the sub user's records. "Food was successfully added" will be displayed.\\
+    \\
+    Iteration: 3
+}
+
+\subsubsection{Track weight for subuser}
+
+\hl{
+    \textbf{Description:} A user should be able to track the weights for sub users.\\
+    \\
+    \textbf{Actors:} All registered users.\\
+    \\
+    \textbf{Precondition:} The user has logged in.\\
+    \\
+    \textbf{Actions:} By pressing the weight button of a specific sub user on the information panel, the system shall display a weight form where the user can modify the weight of the sub user and the day it was recorded.\\
+    \\
+    \textbf{Post condition:} The sub user's modified weight should be added to their record.\\
+    \\
+    \textbf{Note: Acceptance tests are the same as the "track weights" user story.}\\
+    \\
+    Iteration: 3
+}
+
+\subsubsection{Graph Plug-in}
+
+\textbf{Description:} Research into a java script graph plug-in. Taking the  information from the user's record. Plot a graph to monitor the changes in the user's weight.\\
+\\
+
+\subsubsection{Graph Calories}
+\hl{
+    \textbf{Description:} Displays a graphical representation of the user's change in calorie intake over the past two weeks.\\
+    \\
+    \textbf{Actors:} All registered users\\
+    \\
+    \textbf{Precondition:} The user is on the profile page.\\
+    \\
+    \textbf{Actions:} By adding the food intake of the current date, the user can immediate see the changes in calories in the graph.\\
+    \\
+    Iteration: 3
+}
+
+\subsubsection{Graph Weight}
+\hl{
+    \textbf{Description:} Displays a graphical representation of the user's change in weight over the past two weeks.\\
+    \\
+    \textbf{Actors:} All registered users.\\
+    \\
+    \textbf{Precondition:} The user is on the profile page.\\
+    \\
+    Iteration: 3
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{User Interface Requirements}
+There are three major sections of our user interface that should be considered critical to the application's success.  Furthermore, we have ideas for expansion and additional feature that we will describe briefly in this section.
+\subsection{Critical Interfaces}
+\subsubsection{Meal Entry Dialogue}
+This dialogue should allow entry for time of meal, contents of meal, and portion of meal. Eventually, the ability to edit previous meals will also be added.
+\subsubsection{Personal Nutrient \& Value Tracking}
+This section of the homepage should give weekly, monthly, and yearly charts of the user's desired reporting figures and any additional abnormal trends our algorithm notices.
+\subsubsection{Account Goal and Preference Adjustment}
+This section is the user's administrative section over their entire account.  Here they can tweak what they want Chomp to help them with.
+\subsection{Additional Interface Ideas}
+These will be filled in in later iterations of this document.
+\subsubsection{Update Register UI}
+\hl{\textbf{Description:}The UI of the register page should be re-factored to have a simpler/elegant design. Mock up is provided.\\
+\\
+Iteration: 3}
+\subsubsection{Updated login UI}
+\hl{\textbf{Description:}The UI should be refactored to improve the transition from the login page to the home page. Side panel should be removed. Style should be changed to match the rest of the website. Buttons should be re-organized for better layout.\\
+\\
+Iteration: 3}
+\subsubsection{U.I Mock-ups}
+
+\hl{\textbf{UI mockups for Chomp can be found at:}} \\
+\\
+\url{https://github.com/Hedekar/chomp/tree/master/RequirementsDocs/uiMockups }
+\subsubsection{Suggested Meal Listing}
+\subsubsection{Community Support Feed}
+\subsubsection{Grocery Bill/List Tracking}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage 
+\begin{appendices}
+\section{User Personas}
+\subsection{Boris Chetznekov}
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+	\includegraphics[scale=0.3]{Boris.jpg}\\
+  \end{center}
+\end{wrapfigure}
+\textbf{Age:} 58\\
+\textbf{Weight:} 370lbs\\
+\textbf{Occupation:} Office Manager for the city's traffic department\\
+\textbf{Techy Rating:} 3.5 out of 5\\
+\textbf{Goal:} To not die early.  After years of gross caloric intake his doctor has informed him of his impending death if his diet and weight doesn't change immediately.\\
+
+\begin{large}
+\textbf{\textit{"I guess I have to change my ways; stupid doctors.  Hopefully I can still drink a beer or vodka or two."}}
+\end{large}\\\\
+\textbf{Persona:} Boris grew up in a small Russian village for his first twenty five years before moving to Finland.  For years a diet of perogies, kielbasa, and beer have not been good to his cholesterol or his heart.  His wife has constantly asked him to eat a little less but Boris is very stubborn.\\
+\\
+Every Thursday the traffic office guys watch football at the pub, reminisce about when he was a fullback in Russia, and eat hot wings.  \textit{"There's no way I'm giving up hot wings and footy.  I might cut back on the wings, but I'm not giving them up, even if it kills me."}  Boris prefers the suicide flavour sauce that the pub makes in-house (the irony of that \textit{is} lost on him).\\
+\\
+His wife is fully in support of Boris's plan to lose weight and she'll cook whatever is needed for this to work -- or at least she'll try (she's not the best cook and often buys frozen dinners).  She does have a few recipes she loves to make (like borscht and kaalilaatikko/cabbage casserole), but often Boris and her share cooking duties, leading to many grilled-cheese dinners.  Rarely do they make salad.\\
+\\
+Boris is often the one in the office to sit at his desk and have people come to him.  It has been almost a decade since he had a shift in the field watching traffic flows or setting up car counters.  At home his reclining chair in front of the television is well-used.
+\newpage
+\subsection{Susan Montgomery}
+\begin{wrapfigure}{r}{0.5\textwidth}
+  \begin{center}
+	\includegraphics[scale=0.23]{Susan.jpg}
+  \end{center}
+\end{wrapfigure}
+\textbf{Age:} 33\\
+\textbf{Weight:} 143lbs\\
+\textbf{Occupation:} Mother and part-time grocery clerk\\
+\textbf{Techy Rating:} 2 out of 5\\
+\textbf{Goal:} To ensure her two kids (as well as her and her husband) are eating healthy while also not going broke.\\
+\\
+\begin{large}
+\textbf{\textit{"My family deserves the best foods we can afford.  I've heard spinach isn't as healthy as most think, and it's rather expensive."}}
+\end{large}\\\\
+\textbf{Persona:} Sue has a fussy five year-old son who really likes mac \& cheese, an eight year-old daughter who is a fairly adventurous eater but with a nut allergy, and an immature thirty-five year-old husband who doesn't like kale.  Susan's favourite treat is baked brie with apricot and crackers but she knows it goes straight to her hips.\\
+\\
+When the kids are in school Sue puts in four-hour shifts at the grocery store down the street to help with the family income.  Because of this she gets great discounts and often can snag products that are nearing expiration if she wants to.  Sometimes she wants to have that time free, but financially their family needs it.\\
+\\
+She loves watching the food TV shows but rarely has the time and wishes she had the same creativity of the chefs on TV.  Once she actually tried making ravioli from scratch, but ended up giving up half-way through because the kids were hungry.\\
+\newpage
+\subsection{Chet Reist}
+\includegraphics[scale=0.38]{Chet.jpg}\\
+\textbf{Age:} 21\\
+\textbf{Weight:} 170lbs\\
+\textbf{Occupation:} Waiter and part-time supplement salesperson\\
+\textbf{Techy Rating:} 4 out of 5\\
+\textbf{Goal:} To win the next body building competition he enters and to keep track of how much of his food his roommates eat.\\
+\begin{large}
+\textbf{\textit{"I need protien, but I swear my roomates are taking my food whey when I'm not looking.  I ought to setup a camera to catch them."}}
+\end{large}\\\\
+\textbf{Persona:} Chet follows a daily routine as much as he can, but with his two jobs and shifting schedule, it's tough.  He tries to get in a protein shake and two bananas in the morning (whenever morning may be) before his daily workout.  Usually PowderPower has him scheduled in the afternoon for four hours before the evening shifts at the restaurant where he tries to grab dinner in the back between orders.  He's on closing shift right now, in hopes he can move to manager soon.\\
+\\
+He's getting sick of the food at the restaurant and is worried about its nutritional value.  When he gets home late he often has an easy though substantial meal (usually pasta) before surfing facebook and heading to bed.  He's not sure if that's terribly good for him.\\
+\\
+Both of his roommates often work out with Chet on his days off, but only Chet is actively working toward body building shows.  Because of this, his diet changes drastically in the month before a show and he follows whatever Jake at PowderPower tells him he should be eating.  Usually those meals get laid out for an entire week at a time but he has trouble sticking to the plan 100\%.
+\end{appendices}
+\end{document}
