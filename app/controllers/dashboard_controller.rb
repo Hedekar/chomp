@@ -31,7 +31,12 @@ class DashboardController < ApplicationController
     weights = Weight
       .where(:Date => (from)..(now))
       .where(:user_id => current_account.get_main_user.id )
-      
+    
+    # override weights to lb if it has kg
+    weights.each do |w|
+      w.Weight = w.get_lb
+      w.Units = "lb"
+    end
     
     respond_to do |format|
       format.json {

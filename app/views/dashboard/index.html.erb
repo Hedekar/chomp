@@ -7,8 +7,14 @@
 </div>
 
 <div class="graphs">
-  <svg id="graph_calories" WIDTH=850  HEIGHT=400></svg>
-  <svg id="graph_weights" WIDTH=850  HEIGHT=400></svg>
+  <div class="graph_item first">
+    <div class="graph_header">Calories over lasts two weeks</div>
+    <svg id="graph_calories" HEIGHT=400></svg>
+  </div>
+  <div class="graph_item last">
+    <div class="graph_header">Weights over lasts two weeks</div>
+    <svg id="graph_weights" HEIGHT=400></svg>
+  </div>
   <script type="text/javascript">
     $(document).ready(function() {
         $.ajax({

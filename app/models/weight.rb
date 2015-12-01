@@ -18,4 +18,12 @@ class Weight < ActiveRecord::Base
   validates :Weight, numericality: {greater_than_or_equal_to: 0}
   validates_with WeightUnit
   
+  def get_lb 
+    if self.Units == "lb"
+      return self.Weight
+    else
+      return self.Weight*(2.20462)
+    end
+  end
+  
 end

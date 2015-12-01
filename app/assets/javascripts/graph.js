@@ -13,7 +13,7 @@ function draw_calories(data) {
             top: 50,
             right: 50,
             bottom: 50,
-            left: 100
+            left: 150
         },
         xRange = d3.time.scale()
             .domain([from,now])
@@ -51,11 +51,21 @@ function draw_calories(data) {
         .attr('class', 'x axis')
         .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
         .call(xAxis);
+    
+    svg.append("svg:text")
+		.attr("transform", "translate(350,390)")
+		.attr("text-anchor", "start")
+		.text("Date (Month/Day)");
 
     svg.append('svg:g')
         .attr('class', 'y axis')
         .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
         .call(yAxis);
+    
+    svg.append("svg:text")
+		.attr("transform", "translate(25,200)")
+		.attr("text-anchor", "start")
+		.text("Calories");
     
     svg.append('svg:path')
       .attr('d', lineFunc(data))
@@ -101,7 +111,7 @@ function draw_weights(data) {
             top: 50,
             right: 50,
             bottom: 50,
-            left: 100
+            left: 150
         },
         xRange = d3.time.scale()
             .domain([from,now])
@@ -146,12 +156,22 @@ function draw_weights(data) {
         .attr("transform", "translate(" + (WIDTH / 2) + " ," + (HEIGHT + MARGINS.bottom) + ")")
         .style("text-anchor", "middle")
         .text("Date");
+    
+    svg.append("svg:text")
+		.attr("transform", "translate(350,390)")
+		.attr("text-anchor", "start")
+		.text("Date (Month/Day)");
 
     svg.append('svg:g')
         .attr('class', 'y axis')
         .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
         .call(yAxis);
-        
+    
+    svg.append("svg:text")
+		.attr("transform", "translate(20,200)")
+		.attr("text-anchor", "start")
+		.text("Weight (lb)");
+    
     svg.append('svg:path')
       .attr('d', lineFunc(data))
       .attr('stroke', 'Gray')
