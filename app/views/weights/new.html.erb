@@ -9,7 +9,7 @@
   </div>
   <div class="field">
     <%= f.label :Units %><br>
-    <%= f.text_field :Units, :value => @weight.Units %>
+    <%= f.select :Units, options_for_select(["lb", "kg"], @weight.Units) %>
   </div>
   <div class="field">
     <%= f.label :Date %><br>

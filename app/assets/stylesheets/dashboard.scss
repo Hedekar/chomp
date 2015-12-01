@@ -38,7 +38,25 @@
   margin: 20px 0;
   border: 1px solid #CCC;
   background-color: #FFF;
-  padding: 20px;
+  
+  .graph_item {
+    padding: 20px;
+  }
+  .graph_item.first {
+    padding-bottom: 0;
+  }
+  .graph_header {
+    background-color: #CCC;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 20px;
+    color: white;
+  }
+  
+  svg {
+    width: 100%;
+    border: 1px solid #CCC;
+  }
 }
 
 .user_window {

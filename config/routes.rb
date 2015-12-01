@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   controller :dashboard do
     get 'home' => :index
     get 'track' => :show
-    get 'data', :defaults => { :format => 'json' }
+    get 'data_calories', :defaults => { :format => 'json' }
+    get 'data_weights', :defaults => { :format => 'json' }
   end
 
   controller :sessions do

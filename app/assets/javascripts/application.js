@@ -15,7 +15,8 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
-//= require d3
+//= require d3.v3
+// require nv.d3
 
 $(document).on('hidden.bs.modal', function(e) {
   $(e.target).removeData('bs.modal');

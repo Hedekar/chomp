@@ -7,22 +7,44 @@
 </div>
 
 <div class="graphs">
-  <a href="graph/index">Click here to graph your recent calories</a>
-  <svg id="graph"></svg>
+  <div class="graph_item first">
+    <div class="graph_header">Calories over lasts two weeks</div>
+    <svg id="graph_calories" HEIGHT=400></svg>
+  </div>
+  <div class="graph_item last">
+    <div class="graph_header">Weights over lasts two weeks</div>
+    <svg id="graph_weights" HEIGHT=400></svg>
+  </div>
   <script type="text/javascript">
     $(document).ready(function() {
         $.ajax({
            type: "GET",
            contentType: "application/json; charset=utf-8",
-           url: 'data',
+           url: 'data_calories',
            dataType: 'json',
            success: function (data) {
-               draw(data);
+               draw_calories(data);
            },
            error: function (result) {
                error();
            }
-       });
+        });
+        
+        $.ajax({
+           type: "GET",
+           contentType: "application/json; charset=utf-8",
+           url: 'data_weights',
+           dataType: 'json',
+           success: function (data) {
+               draw_weights(data);
+           },
+           error: function (result) {
+               error();
+           }
+        });
     });
   </script>
 </div>
+
+<%= link_to "Calculate BMI", bmi_calc_index_path, :class => "btn btn-default" %>
+<%= link_to "Daily Calorie Intake Suggestion", calorie_calc_index_path, :class => "btn btn-default" %>

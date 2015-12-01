@@ -138,6 +138,12 @@
   .item.right {
     
   }
+  .item.first {
+    
+  }
+  .item.last {
+    border-bottom: none;
+  }
   .item::after {
     content: "";
     display:block;
@@ -164,5 +170,34 @@
       display:block;
       clear:both;
     }
+  }
+}
+.nutrition_details::after
+{
+  content: "";
+  display: block;
+  clear:both;
+}
+
+.nutrition_form {
+  border: 2px solid #CCC;
+  background-color: #E5E5E5;
+  padding: 10px;
+}
+.nutrition_form::after {
+  content: "";
+  display:block;
+  clear:both;
+}
+
+
+.column_01, .column_02 {
+  width: 50%;
+  float: left;
+  
+  .title {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 }

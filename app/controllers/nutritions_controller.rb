@@ -8,6 +8,10 @@ class NutritionsController < ApplicationController
   def show
     @now = Time.now.in_time_zone('Pacific Time (US & Canada)').to_date
     @nutrition = Nutrition.get_detail(params[:id])
+    
+    @main_user = current_account.get_main_user
+    @other_users = current_account.get_other_users
+    
     render layout: "modal"
   end
   
@@ -17,24 +21,38 @@ class NutritionsController < ApplicationController
     month = params[:date]["d(2i)"]
     day = params[:date]["d(3i)"]
     date = year + ((month.length < 2) ? "0" + month : month) + ((day.length < 2) ? "0" + day : day )
+    n = Nutrition.get_detail(params[:ndbno])
     
-    food = Food.new(params.permit(:name, :serving, :category))
-    food.user_id = current_account.get_main_user.id
-    food.date = date
-    if food.save
-      n = Nutrition.get_detail(params[:ndbno])
-      n["report"]["food"]["nutrients"].each do |x|
-        nutrient = Nutrient.new()
-        nutrient.ref_id = x["nutrient_id"]
-        nutrient.name = x["name"]
-        nutrient.group = x["group"]
-        nutrient.unit = x["unit"]
-        nutrient.value = x["value"]
-        nutrient.food_id = food.id
-        nutrient.save
+    error_count = 0
+    params[:servings].each do |user_id, serving|
+      if serving.to_f > 0.0
+        food = Food.new(
+          :name => params[:name],
+          :serving => serving,
+          :category => params[:category],
+          :user_id => user_id,
+          :date => date)
+          
+        if food.save
+          n["report"]["food"]["nutrients"].each do |x|
+            nutrient = Nutrient.new()
+            nutrient.ref_id = x["nutrient_id"]
+            nutrient.name = x["name"]
+            nutrient.group = x["group"]
+            nutrient.unit = x["unit"]
+            nutrient.value = x["value"]
+            nutrient.food_id = food.id
+            nutrient.save
+          end
+        else
+          error_count = error_count + 1
+        end
       end
+    end
+    
+    if error_count == 0
       respond_to do |format|
-        format.html { redirect_to :back, notice: 'Food was successfully added.' }
+        format.html { redirect_to :back, notice: "Food was successfully added." }
         format.json { redirect_to :show, status: :ok, location: @weight }
       end
     else
